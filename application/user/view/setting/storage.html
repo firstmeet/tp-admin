@@ -1,0 +1,210 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class=" layui-col-md12 widget-bff">
+                <form id="my-form" class="layer-form tpl-form-line-form" enctype="multipart/form-data" action="{:url('System/store')}" method="post">
+                    <div class="widget-body">
+                        <fieldset>
+                            <div class="widget-head layer-cf">
+                                <div class="widget-title layer-fl">文件上传设置</div>
+                            </div>
+                            <div class="layer-form-group">
+                                <label class="layui-col-sm3 layui-col-lg2 layer-form-label">
+                                    默认上传方式
+                                </label>
+                                <div class="layui-col-sm9 layer-u-end">
+                                    <label class="layui-input-block">
+                                        <input type="radio" name="storage_default" value="local" data-layer-ucheck
+                                            {$config['storage_default'] === 'local' ? 'checked' : ''}> 本地 (不推荐)
+                                    </label>
+                                    <label class="layui-input-block">
+                                        <input type="radio" name="storage_default" value="qiniu" data-layer-ucheck
+                                            {$config['storage_default'] === 'qiniu' ? 'checked' : ''}> 七牛云存储
+                                    </label>
+                                    <label class="layui-input-block">
+                                        <input type="radio" name="storage_default" value="aliyun" data-layer-ucheck
+                                            {$config['storage_default'] === 'aliyun' ? 'checked' : ''}> 阿里云OSS
+                                    </label>
+                                    <label class="layui-input-block">
+                                        <input type="radio" name="storage_default" value="qcloud" data-layer-ucheck
+                                            {$config['storage_default'] === 'qcloud' ? 'checked' : ''}> 腾讯云COS
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="qiniu"
+                                 class="form-tab-group {$config['storage_default'] === 'qiniu' ? 'active' : ''}">
+                                <div class="layer-form-group">
+                                    <label class="layui-col-sm3 layui-col-lg2 layer-form-label">
+                                        存储空间名称 <span class="tpl-form-line-small-title">Bucket</span>
+                                    </label>
+                                    <div class="layui-col-sm9 layer-u-end">
+                                        <input type="text" class="tpl-form-input" name="storage_qiniu_bucket"
+                                               value="{$config['storage_qiniu_bucket']}">
+                                    </div>
+                                </div>
+                                <div class="layer-form-group">
+                                    <label class="layui-col-sm3 layui-col-lg2 layer-form-label">
+                                        ACCESS_KEY <span class="tpl-form-line-small-title">AK</span>
+                                    </label>
+                                    <div class="layui-col-sm9 layer-u-end">
+                                        <input type="text" class="tpl-form-input"
+                                               name="storage_qiniu_access_key"
+                                               value="{$config['storage_qiniu_access_key']}">
+                                    </div>
+                                </div>
+                                <div class="layer-form-group">
+                                    <label class="layui-col-sm3 layui-col-lg2 layer-form-label">
+                                        SECRET_KEY <span class="tpl-form-line-small-title">SK</span>
+                                    </label>
+                                    <div class="layui-col-sm9 layer-u-end">
+                                        <input type="text" class="tpl-form-input"
+                                               name="storage_qiniu_secret_key"
+                                               value="{$config['storage_qiniu_secret_key']}">
+                                    </div>
+                                </div>
+                                <div class="layer-form-group">
+                                    <label class="layui-col-sm3 layui-col-lg2 layer-form-label">
+                                        空间域名 <span class="tpl-form-line-small-title">Domain</span>
+                                    </label>
+                                    <div class="layui-col-sm9 layer-u-end">
+                                        <input type="text" class="tpl-form-input" name="storage_qiniu_domain"
+                                               value="{$config['storage_qiniu_domain']}">
+                                        <small>请补全http:// 或 https://，例如：http://static.cloud.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="aliyun"
+                                 class="form-tab-group {$config['storage_default'] === 'aliyun' ? 'active' : ''}">
+                                <div class="layer-form-group">
+                                    <label class="layui-col-sm3 layui-col-lg2 layer-form-label">
+                                        存储空间名称 <span class="tpl-form-line-small-title">Bucket</span>
+                                    </label>
+                                    <div class="layui-col-sm9 layer-u-end">
+                                        <input type="text" class="tpl-form-input" name="storage_aliyun_bucket"
+                                               value="{$config['storage_aliyun_bucket']}">
+                                    </div>
+                                </div>
+                                <div class="layer-form-group">
+                                    <label class="layui-col-sm3 layui-col-lg2 layer-form-label"> AccessKeyId </label>
+                                    <div class="layui-col-sm9 layer-u-end">
+                                        <input type="text" class="tpl-form-input"
+                                               name="storage_aliyun_access_key_id"
+                                               value="{$config['storage_aliyun_access_key_id']}">
+                                    </div>
+                                </div>
+                                <div class="layer-form-group">
+                                    <label class="layui-col-sm3 layui-col-lg2 layer-form-label"> AccessKeySecret </label>
+                                    <div class="layui-col-sm9 layer-u-end">
+                                        <input type="text" class="tpl-form-input"
+                                               name="storage_aliyun_access_key_secret"
+                                               value="{$config['storage_aliyun_access_key_secret']}">
+                                    </div>
+                                </div>
+                                <div class="layer-form-group">
+                                    <label class="layui-col-sm3 layui-col-lg2 layer-form-label">
+                                        空间域名 <span class="tpl-form-line-small-title">Domain</span>
+                                    </label>
+                                    <div class="layui-col-sm9 layer-u-end">
+                                        <input type="text" class="tpl-form-input"
+                                               name="storage_aliyun_domain"
+                                               value="{$config['storage_aliyun_domain']}">
+                                        <small>请补全http:// 或 https://，例如：http://static.cloud.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="qcloud"
+                                 class="form-tab-group {$config['storage_default'] === 'qcloud' ? 'active' : ''}">
+                                <div class="layer-form-group">
+                                    <label class="layui-col-sm3 layui-col-lg2 layer-form-label">
+                                        存储空间名称 <span class="tpl-form-line-small-title">Bucket</span>
+                                    </label>
+                                    <div class="layui-col-sm9 layer-u-end">
+                                        <input type="text" class="tpl-form-input" name="storage_qcloud_bucket"
+                                               value="{$config['storage_qcloud_bucket']}">
+                                    </div>
+                                </div>
+                                <div class="layer-form-group">
+                                    <label class="layui-col-sm3 layui-col-lg2 layer-form-label">
+                                        所属地域 <span class="tpl-form-line-small-title">Region</span>
+                                    </label>
+                                    <div class="layui-col-sm9 layer-u-end">
+                                        <input type="text" class="tpl-form-input"
+                                               name="storage_qcloud_region"
+                                               value="{$config['storage_qcloud_region']}">
+                                        <small>请填写地域简称，例如：ap-beijing、ap-hongkong、eu-frankfurt</small>
+                                    </div>
+                                </div>
+                                <div class="layer-form-group">
+                                    <label class="layui-col-sm3 layui-col-lg2 layer-form-label">
+                                        SecretId
+                                    </label>
+                                    <div class="layui-col-sm9 layer-u-end">
+                                        <input type="text" class="tpl-form-input"
+                                               name="storage_qcloud_secret_id"
+                                               value="{$config['storage_qcloud_secret_id']}">
+                                    </div>
+                                </div>
+                                <div class="layer-form-group">
+                                    <label class="layui-col-sm3 layui-col-lg2 layer-form-label">
+                                        SecretKey
+                                    </label>
+                                    <div class="layui-col-sm9 layer-u-end">
+                                        <input type="text" class="tpl-form-input"
+                                               name="storage_qcloud_secret_key"
+                                               value="{$config['storage_qcloud_secret_key']}">
+                                    </div>
+                                </div>
+                                <div class="layer-form-group">
+                                    <label class="layui-col-sm3 layui-col-lg2 layer-form-label">
+                                        空间域名 <span class="tpl-form-line-small-title">Domain</span>
+                                    </label>
+                                    <div class="layui-col-sm9 layer-u-end">
+                                        <input type="text" class="tpl-form-input" name="storage_qcloud_domain"
+                                               value="{$config['storage_qcloud_domain']}">
+                                        <small>请补全http:// 或 https://，例如：http://static.cloud.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layer-form-group">
+                                <div class="layui-col-sm9 layui-col-smpush-3 layer-margin-top-lg">
+									<input type="hidden" name="inc_type" value="{$inc_type}">
+                                    <button type="submit" class="j-submit layer-btn layer-btn-secondary">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+
+        // 切换默认上传方式
+        $("input:radio[name='storage_default']").change(function (e) {
+            $('.form-tab-group').removeClass('active');
+            switch (e.currentTarget.value) {
+                case 'qiniu':
+                    $('#qiniu').addClass('active');
+                    break;
+                case 'qcloud':
+                    $('#qcloud').addClass('active');
+                    break;
+                case 'aliyun':
+                    $('#aliyun').addClass('active');
+                    break;
+                case 'local':
+                    break;
+            }
+        });
+
+        /**
+         * 表单验证提交
+         * @type {*}
+         
+        $('#my-form').superForm();*/
+
+    });
+</script>

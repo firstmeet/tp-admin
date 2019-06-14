@@ -1,0 +1,122 @@
+<div class="layui-container">
+	<div class="layui-row">
+		<div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head">
+				<div class="widget-title layer-cf">
+					商品属性
+				</div>
+			</div>
+			<div class="layui-col-md12 layui-col-xs12 widget-body">
+				<div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+					<div class="layui-col-md2">
+						<div class="layui-btn-group ">
+							<a class="layui-btn" href="{:url('item/saveAttrbute')}">
+							<i class="mdi menu-icon mdi-plus"></i>新增
+							</a>
+						</div>
+					</div>
+					<form class="layui-form" action="">
+						<input type="hidden" name="s" value="/{$request->pathinfo()}">
+						<div class="layui-col-md4 layui-col-flex">
+							<label class="layui-form-label">商品分类：</label>
+							<spanstyle="display:none;">{$category_id = $request->get('category_id') ?: null}</span>
+							<select class="form-control" name="type_id" data-am-selected="{searchBox: 1, btnSize: 'sm'}">
+								<option value="0">请选择</option>
+										{if isset($type)}{foreach ($type as $first)}
+								<option {notempty name="$spec.type_id"}{if ($spec.type_id) eq ($first.id)} selected = "selected" {/if}{/notempty}value="{$first['id']}"> {$first['name']}</option>
+										{/foreach}{/if}
+							</select>
+						</div>
+						<div class="layui-col-md4">
+							<button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+						</div>
+					</form>
+				</div>
+				<div class="layui-col-sm12">
+					<div class="box-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="layui-col-md12">
+									<table width="100%" class="layui-table">
+									<thead>
+									<tr>
+										<th>
+											编号
+										</th>
+										<th>
+											属性名称
+										</th>
+										<th>
+											商品类型
+										</th>
+										<th>
+											可选值列表
+										</th>
+										<th>
+											排序
+										</th>
+										<th>
+											时间
+										</th>
+										<th>
+											操作
+										</th>
+									</tr>
+									</thead>
+									<tbody id="list-table">
+								{if !$list->isEmpty()}{foreach $list as $vo}
+									<tr>
+										<td class="layer-text-middle">
+										{$vo['attr_id']}
+										</td>
+										<td align="left" class="layer-text-middle">
+											{$vo['name']}
+										</td>
+										<td align="left" class="layer-text-middle">
+										{if isset($typelist[$vo['type_id']])}{$typelist[$vo['type_id']]}{/if}
+										</td>
+										<td class="layer-text-middle">
+											{$vo.values|mb_substr=0,30,'utf-8'}
+										</td>
+										<td class="layer-text-middle">
+											{$vo['sort']}
+										</td>
+										<td class="layer-text-middle">
+											{$vo['create_time']|date="Y-m-d"}
+										</td>
+										<td class="layer-text-middle">
+											<div class="tpl-table-black-operation">
+												<a href="{:url('item/saveAttrbute', ['attr_id' => $vo['attr_id']])}">
+												<i class="mdi menu-icon mdi-grease-pencil"></i> 编辑
+												</a>
+												<a href="javascript:;" class="item-delete tpl-table-black-operation-del" data-id="{$vo['attr_id']}">
+												<i class="mdi menu-icon mdi-delete-forever"></i> 删除
+												</a>
+											</div>
+										</td>
+									</tr>
+								{/foreach}{else/}
+									<tr>
+										<td colspan="12" class="layer-text-center">
+											暂无记录
+										</td>
+									</tr>
+								{/if}
+									</tbody>
+									</table>
+								</div>
+								<div class="layui-fr">{$list|raw}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+    $(function () {
+        // 删除元素
+        var url = "<?= url('item/delete') ?>";
+        $('.item-delete').delete('id', url,'','ItemAttribute');
+    });
+	</script>

@@ -1,0 +1,93 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head">
+				<div class="widget-title">添加商品分类</div>
+			</div>
+               <form id="my-form" class="layer-form tpl-form-line-form" method="post">
+				<div class="widget-body layui-col-md12 ">
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">分类名称：  </label>
+						<div class="layui-col-sm7 layer-midd-left ">
+						   <input type="text" class="layui-input" name="category[name]" value="{$category['name']??''}" required>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">上级分类： </label>
+						<div class="layui-col-sm7 layer-midd-left ">
+						
+							  <input type="text" id="tree" lay-filter="tree" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">分类图片：  </label>
+						<div class="layui-col-sm7 layer-midd-left ">
+							<div class="layer-form-file">
+								<button type="button"
+										class="upload-file layui-btn ">
+									<i class="layer-icon-cloud-upload"></i> 选择图片
+								</button>
+								<div class="uploader-list layer-cf">
+									 <div class="file-item">
+											<a href="{$category['image']}" title="点击查看大图" target="_blank">
+												<img src="{$category['images']['file_path']}">
+											</a>
+										  
+											<input type="hidden" name="category[image]" value="{$category['images']['id']??''}">
+											<i class="mdi menu-icon mdi-window-close file-item-delete"></i>
+										</div>
+								</div>
+							</div>
+							<div class="help-block layer-margin-top-sm">
+								<small>尺寸150x150像素以上，大小2M以下</small>
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">分类排序：  </label>
+						<div class="layui-col-sm7 layer-midd-left ">
+							<input type="number" class="layui-input" name="category[sort]"
+								   value="100" required>
+							<small>数字越小越靠前</small>
+						</div>
+					</div>
+				
+						<input type="hidden" name="category[id]" value="{$category['id']??''}">
+				
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							 <input type="hidden"  value="{$category['pid']??''}"  name="category[pid]" lay-filter="tree" class="layui-input catid">
+							<button type="submit" class="j-submit layui-btn ">提交
+							</button>
+						</div>
+					</div>
+				</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 图片文件列表模板 -->
+{include file="layouts/_template/tpl_file_item" /}
+<!-- 文件库弹窗 -->
+{include file="layouts/_template/file_library" /}
+<script>
+var cat_id="{$category['pid']}"
+</script>
+ <script src="assets/user/js/goods.category.js"></script>
+<script>
+    $(function () {
+        // 选择图片
+        $('.upload-file').selectImages({
+            name: 'category[image]'
+        });
+
+        /**
+         * 表单验证提交
+         * @type {*}
+         */
+        $('#my-form').superForm();				
+
+    });		
+ 
+</script>

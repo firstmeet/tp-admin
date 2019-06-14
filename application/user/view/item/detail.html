@@ -1,0 +1,117 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head"> 
+				<div class="widget-title">
+				商品评价详情 
+				</div> 
+			</div> 
+			<form id="my-form" class="layui-form" method="post"> 
+				<div class="widget-body layui-col-sm12 layui-col-md12 layui-col-lg12"> 
+					<div class="layui-form-item"> 
+						<label class="layui-form-label">用户 </label> 
+						<div class="layui-col-sm7 layer-midd-left"> 
+							<label>{$model['user']['nickName']}</label> 
+							<label >(用户id：{$model['user']['user_id']})</label>
+						</div> 
+					</div> 
+					<div class="layui-form-item"> 
+						<label class="layui-form-label">商品图片 </label> 
+						<div class="layui-col-sm7 layer-midd-left"> 
+						<a href="{$model['order_goods']['image']}" title="点击查看大图" target="_blank"> <img src="{$model['order_goods']['image']}" alt="商品图片" width="80" height="80" /> </a> 
+						</div> 
+					</div> 
+					<div class="layui-form-item"> 
+						<label class="layui-form-label">商品名称 </label> 
+						<div class="layui-col-sm7 layer-midd-left"> 
+					   {$model['order_goods']['name']}
+						</div> 
+					</div> 
+					<div class="layui-form-item"> 
+						<label class="layui-form-label">评分</label> 
+						<div class="layui-input-block"> 
+							<label class="layui-input-inline"> <input type="radio" name="comment[score]" value="10" data-am-ucheck="" {$model['score']== 10 ? 'checked' : ''} /> 好评 </label> 
+							<label class="layui-input-inline"> <input type="radio" name="comment[score]" value="20" data-am-ucheck="" {$model['score']==  20 ? 'checked' : ''} /> 中评 </label> 
+							<label class="layui-input-inline"> <input type="radio" name="comment[score]" value="30" data-am-ucheck="" {$model['score']== 30 ? 'checked' : ''} /> 差评 </label> 
+						</div> 
+					</div> 
+					<div class="layui-form-item"> 
+						<label class="layui-form-label">评价内容 </label> 
+						<div class="layui-col-sm7 layer-midd-left"> 
+						<textarea class="layer-field-valid layui-textarea" rows="5" placeholder="请输入评价内容" name="comment[content]" required="">{$model['content']}</textarea> 
+						</div> 
+					</div> 
+					<div class="layui-form-item"> 
+					  <label class="layui-form-label">评价图片 </label> 
+						<div class="layui-col-sm7 layer-midd-left"> 
+							<div class="layer-form-file"> 
+								<button type="button" class="upload-file layui-btn"> <i class="layer-icon-cloud-upload"></i> 选择图片 </button> 
+								<div class="uploader-list layer-cf">
+								  {if isset($model['image'])} {foreach $model['image'] as $key =>$item} 
+								 <div class="file-item"> 
+									  <a href="{$item['file_path']}" title="点击查看大图" target="_blank">												<img src="{$item['file_path']}">												</a>  
+								  <input type="hidden" name="comment[images][]" value="{$item['image_id']}" /> 
+								  <i class="iconfont icon-shanchu file-item-delete"></i> 
+								 </div> {/foreach} {/if} 
+								</div> 
+							</div> 
+							<div class="layui-col-sm12"> 
+								<small>最多允许6张，可拖拽调整显示顺序</small> 
+							</div> 
+						</div> 
+					</div> 
+					<div class="layui-form-item"> 
+						<label class="layui-form-label">评价排序 </label> 
+						<div class="layui-col-sm7 layer-midd-left"> 
+						<input type="number" min="0" class="layui-input" name="comment[sort]" value="{$model['sort']}" required="" /> 
+					   <small>数字越小越靠前</small> 
+						</div> 
+					</div> 
+					<div class="layui-form-item"> 
+						<label class="layui-form-label">显示状态 </label> 
+						<div class="layui-input-block"> 
+						<label class="layui-input-inline"> <input type="radio" name="comment[status]" value="1" data-am-ucheck="" {$model['status']== 1 ? 'checked' : ''} /> 显示 </label> 
+						<label class="layui-input-inline"> <input type="radio" name="comment[status]"  value="0" data-am-ucheck="" {$model['status']== 0 ? 'checked' : ''} /> 隐藏 </label> 
+						</div> 
+					</div> 
+					<div class="layui-form-item"> 
+						<label class="layui-form-label">评论时间 </label> 
+						<div class="layui-col-sm7 layer-midd-left"> 
+						{$model['create_time']}
+						</div> 
+					</div> 
+					<div class="layui-input-block"> 
+					   <button type="submit" class="j-submit layui-btn">提交 </button> 
+					</div> 
+				</div> 
+			</form> 
+        </div> 
+    </div>
+</div>
+  <!-- 图片文件列表模板 -->
+  {include file="layouts/_template/tpl_file_item" /}<!-- 文件库弹窗 -->
+  {include file="layouts/_template/file_library" /}
+  <script src="assets/user/js/ddsort.js"></script><script>
+	  $(function () {        // 选择图片       
+	  $('.upload-file').selectImages({           
+		  name: 'comment[images][]'          
+			  , multiple: true         
+			  , limit: 6       
+		  });        // 图片列表拖动    
+	  $('.uploader-list').DDSort({      
+		  target: '.file-item',         
+		  delay: 100, // 延时处理，默认为 50 ms，防止手抖点击 A 链接无效    
+		  floatStyle: {            
+			  'border': '1px solid #ccc',      
+			  'background-color': '#fff'      
+		  }      
+	  });        
+	  /**   
+	  * 表单验证提交      
+	  * @type {*}      
+	  */     
+	  $('#my-form').superForm();    
+	  
+	  });
+  
+  </script>

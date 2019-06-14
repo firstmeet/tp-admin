@@ -1,0 +1,90 @@
+<div class="layui-container">
+	<div class="layui-row">
+		<div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head">
+				<div class="widget-title">
+					品牌列表
+				</div>
+			</div>
+			<div class="layui-col-md12 layui-col-xs12 widget-body">
+			    <div class="layui-col-md2">
+
+							<a class="layui-btn" href="{:url('item/saveBrand')}">
+							<i class="mdi menu-icon mdi-plus"></i>新增
+							</a>
+
+				</div>
+				<form class="layui-form" action="">
+					<input type="hidden" name="s" value="/{$request->pathinfo()}">
+					<div class="layui-col-md7">
+						<div class="layui-col-md2 layui-col-flex">
+							<label class="layui-form-label">品牌名称：</label>
+						</div>
+						<div class="layui-col-md4">
+							<input type="text" class="layui-input" name="name" placeholder="请输入商品名称" value="{$request->get('name')}">
+						</div>
+						<div class="layui-col-md3 laui-col-width">
+							<button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+						</div>
+					</div>
+				</form>
+				<div class="widget-body layui-col-md12 layui-col-xs12">
+					<div class="layui-col-sm12">
+						<div class="box-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="layui-col-md12">
+										<table width="100%" class="layui-table">
+										<thead>
+										<tr>
+											<th>编号</th>
+											<th>品牌名称</th>
+											<th>Logo</th>
+											<th>排序</th>
+											<th>操作</th>
+										</tr>
+										</thead>
+										<tbody id="list-table">{if !$list->isEmpty()} {foreach $list as $vo}
+										<tr>
+											<td class="layer-text-middle">	{$vo['id']}</td>
+											<td class="layer-text-middle">{$vo['name']}</td>
+											<td class="layer-text-middle">
+												<a href="{$vo.file_path}" target="_blank"><img onmouseover="$(this).attr('width','80').attr('height','45');" onmouseout="$(this).attr('width','40').attr('height','30');" width="40" height="30" src="{$vo.file_path}"/></a>
+											</td>
+											<td class="layer-text-middle">
+												<input type="text" onchange="updateSort('brand','id','{$vo.id}','sort',this)" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" size="4" value="{$vo.sort}" class="input-sm "/>
+											</td>
+											<td class="layer-text-middle">
+												<div class="tpl-table-black-operation">
+													<a href="{:url('item/saveBrand', ['id' => $vo['id']])}">
+													<i class="mdi menu-icon mdi-grease-pencil"></i> 编辑
+													</a>
+													<a href="javascript:;" class="item-delete tpl-table-black-operation-del" data-id="{$vo['id']}">
+													<i class="mdi menu-icon mdi-delete-forever"></i>删除
+													</a>
+												</div>
+											</td>
+										</tr>
+                                     {/foreach}{else/}
+										<tr>
+											<td colspan="12" class="layer-text-center">暂无记录</td>
+										</tr>
+                            {/if}
+										</tbody>
+										</table>
+									</div>
+									<div class="layui-fr">{$list|raw}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+    $(function () {
+        // 删除元素
+          var url = "{:url('item/delete')}";
+        $('.item-delete').delete('id', url,'','Brand');
+    });
+		</script>

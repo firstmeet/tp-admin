@@ -1,0 +1,99 @@
+<div class="row-content layer-cf">
+    <div class="row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="widget layui-col-md12 widget-bff">
+                <form id="my-form" class="layer-form tpl-form-line-form" action="{:url('System/store')}" method="post">
+                    <div class="widget-body">
+                        <fieldset>
+                            <div class="tips layer-margin-top-sm layer-margin-bottom-sm">
+                                <div class="pre">
+                                    <p>
+                                        模板消息仅用于微信小程序向用户发送服务通知，因微信限制，每笔支付订单可允许向用户在7天内推送最多3条模板消息。
+                                        <a href="{:url('store/settinghelp/tplMsg')}" target="_blank">如何获取模板消息ID？</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="widget-head layer-cf">
+                                <div class="widget-title layer-fl">支付成功通知</div>
+                            </div>
+                            <div class="layer-form-group">
+                                <label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require">
+                                    是否启用1
+                                </label>
+                                <div class="layui-col-sm9 layer-u-end">
+                                    <label class="layui-input-block">
+                                        <input type="radio" name="p_is_enable" value="1"
+                                               data-layer-ucheck
+                                            {$config['p_is_enable'] === '1' ? 'checked' : ''}
+                                               required>
+                                        开启
+                                    </label>
+                                    <label class="layui-input-block">
+                                        <input type="radio" name="p_is_enable" value="0"
+                                               data-layer-ucheck
+                                            {$config['p_is_enable'] === '0' ? 'checked' : ''}>
+                                        关闭
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="layer-form-group">
+                                <label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require">
+                                    模板消息ID
+                                    <span class="tpl-form-line-small-title">Template ID</span>
+                                </label>
+                                <div class="layui-col-sm9 layer-u-end">
+                                    <input type="text" class="tpl-form-input" name="p_template_id"
+                                           value="{$config['p_template_id']}">
+                                    <div class="help-block layer-margin-top-xs">
+                                        <small>模板编号AT0009，关键词 (订单编号、支付时间、订单金额、商品名称)</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-head layer-cf">
+                                <div class="widget-title layer-fl">订单发货通知</div>
+                            </div>
+                            <div class="layer-form-group">
+                                <label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require">
+                                    是否启用
+                                </label>
+                                <div class="layui-col-sm9 layer-u-end">
+                                    <label class="layui-input-block">
+                                        <input type="radio" name="d_is_enable" value="1"
+                                               data-layer-ucheck
+                                            {$config['d_is_enable'] === '1' ? 'checked' : ''}
+                                               required>
+                                        开启
+                                    </label>
+                                    <label class="layui-input-block">
+                                        <input type="radio" name="d_is_enable" value="0"
+                                               data-layer-ucheck
+                                            {$config['d_is_enable'] === '0' ? 'checked' : ''}>
+                                        关闭
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="layer-form-group">
+                                <label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require">
+                                    模板消息ID
+                                    <span class="tpl-form-line-small-title">Template ID</span>
+                                </label>
+                                <div class="layui-col-sm9 layer-u-end">
+                                    <input type="text" class="tpl-form-input" name="d_template_id"
+                                           value="{$config['d_template_id']}">
+                                    <small>模板编号AT0007，关键词 (订单编号、商品信息、收货人、收货地址、物流公司、物流单号)</small>
+                                </div>
+                            </div>
+                            <div class="layer-form-group">
+                                <div class="layui-col-sm9 layui-col-smpush-3 layer-margin-top-lg">
+									<input type="hidden" name="inc_type" value="{$inc_type}">
+                                    <button type="submit" class="j-submit layer-btn layer-btn-secondary">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

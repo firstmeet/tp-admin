@@ -1,0 +1,194 @@
+/*
+ 表格样式表
+ */
+.evaluation-table table tbody tr td{vertical:middle;}
+.evaluation-table table tbody tr td{vertical-align:middle;}
+.evaluation-table table tbody tr{
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+.evaluation-table table tbody tr:hover{background: #f3f3f3;}
+.evaluation-table-footer ul li a{color:#666;}
+.evaluation-table-footer ul li.active a{
+    background: #fa6869!important;
+    color:#fff;
+}
+.evaluation-table table{
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+.evaluation-table table tr{min-height:90px;}
+.evaluation-table table thead{
+    background: #eee;
+    min-height:40px;
+    line-height: 40px;
+    font-weight: normal;
+}
+.evaluation-table table thead th{
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+}
+.mp-table-button{
+    display: flex!important;
+    flex-direction: column!important;
+    justify-content: center!important;
+}
+.mp-table-button button{margin:5px;}
+
+.mp-table thead{
+    background: #eee;
+    text-align: center;
+}
+.mp-table thead th{
+    text-align: center;
+}
+.mp-table{
+    text-align: center;
+    margin:20px auto;
+}
+.mp-table tr td{border-bottom:1px solid #d4d4d4;}
+
+.formtable{
+    padding:50px;
+    box-sizing: border-box;
+}
+.formtable {
+    width: 100%;
+    font-size: 14px;
+
+}
+.formtable-main{
+    width: 369px;
+    margin: 0 auto;
+}
+.formtable  label{
+    font-weight: normal;
+    text-align: center;
+}
+.formtable p input,.formtable p select{
+    width: 260px;
+    height: 30px;
+    line-height: 30px;
+    border:1px solid #ddd;
+    border-radius: 3px;
+    text-indent: 20px;
+    text-align: left;
+}
+.mp-table s{
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    text-align: center;
+    display: inline-block;
+    background: #ddd;
+    font-size: 10px;
+    color:#fff;
+}
+.sellectbox{
+    transition:all 0.5s;
+    cursor:pointer;
+    position:relative;
+    width:22px;
+    height:22px;
+    display:block;
+    border:1px solid #d4d4d4;
+    background:#fff;
+    border-radius:100px;
+    margin: 2px auto;
+}
+.sellectbox i{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:9;
+    width:22px;
+    height:22px;
+    opacity:0;
+    font-size:12px;
+    line-height:22px;
+    text-align:center;
+    text-indent:0;
+    padding:0;
+}
+.formbox{
+    display:inline-block;
+    width:auto;
+    height: 34px;
+    padding:0 12px;
+    font-size: 14px;
+    vertical-align:middle;
+}
+.sellectbox.hover{
+    background:#fa6869;
+    border:1px solid #fa6869;
+    color:#fff;
+}
+.sellectbox.hover i{
+    opacity:1;
+    color:#fff;
+}
+.sellectbox input{
+    cursor:pointer;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:999;
+    width:22px;
+    height:22px;
+    opacity:0;
+}
+.mp-table s.circle{border-radius: 100px;}
+.mp-table s.zibg{background:#cd8bd1;}
+.mp-table s.redbg{background:#fa6869;}
+.mp-table s.bluebg{background:#14c5c3;}
+.mp-table p{
+    color:#fa6869;
+    line-height: 50px;
+}
+.dropdown-menu-right {right: -32px!important;}
+.dropdown-menu {min-width: 140px!important;}
+.dropdown-menu-top{top: 90% !important;}
+.table-bg {
+    line-height: 40px;
+    border: 1px solid #ccc;
+    border-bottom: 0px;
+    border-radius: 4px;
+}
+.payamount{
+   color:red;
+   font-size:30px;
+   line-height: 40px;
+}
+.classification-shop{
+     display: flex;
+     flex-direction: row;
+     width: 79.66666667%
+}
+.classification-button{
+    width:20%;
+}
+.addtype{
+	width: 20px;
+	height: 20px;
+	padding:0;
+	display: block;
+	border:1px dashed #c3c3c3;
+	background: #fff;
+	font-size: 16px;
+	line-height: 16px;
+	color:3c3c3c3;
+	text-align: center;
+	cursor:pointer;
+}
+.addtype:hover{
+	color:#fa6869;
+	border-color:#fa6869;
+}
+.shoplowests{
+    margin-left: 200px;
+    border: 1px #000 solid;
+}
+.change-goods{margin: 10px;border:1px dashed red;font-size:60px;font-weight: 100;color:red;text-align: center;height:100px;line-height: 100px;}
+.change-goods-list{border:1px dashed red;padding:15px;margin: 10px;height: 300px;overflow: auto;}

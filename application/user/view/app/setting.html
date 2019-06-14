@@ -1,0 +1,74 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<form id="my-form" class="layui-form " enctype="multipart/form-data" method="post">
+				<div class="widget-head layui-col-sm12" >
+					<div class="widget-title">小程序设置</div>
+				</div>
+				<div class="widget-body layui-col-sm12 layui-col-md12 layui-col-lg12">
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require ron-wide">
+								AppID <span class="tpl-form-line-small-title">小程序ID</span>
+							</label>
+							<div class="layui-col-sm6 layer-midd-left">
+								<input type="text" class="layui-input" name="app[appkey]"
+									   value="{$app['appkey']}" required>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require ron-wide">
+								AppSecret <span class="tpl-form-line-small-title">小程序密钥</span>
+							</label>
+							<div class="layui-col-sm6 layer-midd-left">
+								<input type="text" class="layui-input" name="app[app_secret]"
+									   value="{$app['app_secret']}" required>
+							</div>
+						</div>						
+				</div>
+				
+				<div class="widget-head layui-col-sm12">
+					<div class="widget-title layer-fl">微信支付设置</div>
+				</div>
+				<div class="layui-col-md12 layui-col-xs12 widget-body">
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require ron-wide">
+							微信支付商户号 <span class="tpl-form-line-small-title">MCHID</span>
+						</label>
+						<div class="layui-col-sm6 layer-midd-left">
+							<input type="text" class="layui-input" name="app[mchid]"
+								   value="{$app['mchid']}">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require ron-wide">
+							微信支付密钥 <span class="tpl-form-line-small-title">APIKEY</span>
+						</label>
+						<div class="layui-col-sm6 layer-midd-left">
+							<input type="text" class="layui-input" name="app[apikey]"
+								   value="{$app['apikey']}">
+						</div>
+					</div>
+					<input type="hidden"  name="app[app_id]" value="{$app['app_id']??''}">
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button type="submit" class="j-submit layui-btn layui-btn-secondary">提交
+							</button>
+						</div>
+					</div>
+
+				</div>
+			</form>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+
+        /**
+         * 表单验证提交
+         * @type {*}
+         */
+        $('#my-form').superForm();
+
+    });
+</script>

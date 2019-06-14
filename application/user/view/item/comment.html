@@ -1,0 +1,112 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head">
+				<div class="widget-title layer-cf">评价列表</div>
+			</div>
+			<div class="layui-col-md12 layui-col-xs12 widget-body">
+				<div class="layui-col-md12" >
+					<table width="100%" class="layui-table">
+						<thead>
+						<tr>
+							<th>ID</th>
+							<th class="layer-text-center">用户</th>
+							<th>商品图片</th>
+							<th width="20%">商品名称</th>
+							<th>评分</th>
+							<th>评价内容</th>
+							<th>是否有图片</th>
+							<th>显示状态</th>
+							<th>评价排序</th>
+							<th>评价时间</th>
+							<th>操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						{if !$list->isEmpty()}{foreach $list as $item}
+					  
+							<tr>
+								<td>{$item['comment_id']}</td>
+								<td>
+									<p class="">{$item['user']['nickName']}</p>
+									<p class="layer-link-muted">(用户id：{$item['user']['user_id']})</p>
+								</td>
+								<td>
+									<a href="{$item['order_goods']['image']}"
+									   title="点击查看大图" target="_blank">
+										<img src="{$item['order_goods']['image']}"
+											 width="50" height="50" alt="商品图片">
+									</a>
+								</td>
+								<td>
+									<p class="item-title">{$item['order_goods']['name']}</p>
+								</td>
+								<td>
+									{if $item['score'] heq 10}
+										<span class="x-color-green">好评</span>
+									{elseif $item['score'] heq 20/}
+										<span class="x-color-yellow">中评</span>
+									{else/}
+										<span class="x-color-red">差评</span>
+									{/if}
+								</td>
+								<td>
+									<p class="item-title">{$item['content']}</p>
+								</td>
+								<td>
+								   {if $item['is_picture']}
+										<span class="x-color-green">是</span>
+									{else/}
+										<span class="">否</span>
+									{/if}
+								</td>
+								<td>
+									{if $item['status']}
+										<span class="x-color-green">显示</span>
+								   {else/}
+										<span class="x-color-red">隐藏</span>
+									{/if}
+								</td>
+								<td>{$item['sort']}</td>
+								<td>{$item['create_time']}</td>
+								<td>
+									<div class="tpl-table-black-operation">
+										<a href="{:url('Item/detail', ['comment_id' => $item['comment_id']])}">
+											<i class="layer-icon-pencil"></i> 详情
+										</a>
+										<a href="javascript:void();"
+										   class="item-delete tpl-table-black-operation-del"
+										   data-id="{$item['comment_id']}">
+											<i class="layer-icon-trash"></i> 删除
+										</a>
+									</div>
+								</td>
+							</tr>
+							{/foreach}{else/}
+					  
+							<tr>
+								<td colspan="11" class="layer-text-center">暂无记录</td>
+							</tr>
+						{/if}
+						</tbody>
+					</table>
+				</div>
+				<div class="layui-col-lg12 layer-cf">
+					<div class="layui-fr">{$list->render()|raw} </div>
+					<div class="layui-fr pagination-total layer-margin-right">
+						<div class="layer-vertical-align-middle">总记录：{$list->total()|raw}</div>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        // 删除元素
+       var url = "<?= url('item/delete') ?>";       
+	   $('.item-delete').delete('id', url,'','Comment');
+     
+    });
+</script>
+

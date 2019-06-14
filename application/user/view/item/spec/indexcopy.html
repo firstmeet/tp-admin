@@ -1,0 +1,112 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="widget">
+                <div class="widget-head">
+                    <div class="widget-titl">商品规格</div>
+                </div>   
+            <div class="layui-col-md12 layui-col-xs12 widget-body"> 
+			        <div class="layui-col-md3">
+                        <div class="layui-form-item">
+                                <div class="layui-btn-group">
+                                    <a class="layui-btn "
+                                       href="{:url('item/saveSpec')}">
+                                        <i class="mdi menu-icon mdi-plus"></i>新增
+                                    </a>
+                                </div>
+                        </div>
+                    </div>
+					<form class="layui-form" method="post" action="">
+						<input type="hidden" name="s" value="/{$request->pathinfo()}">
+						        <div class="layui-col-md2">
+						            <div class="layui-form-item">
+										<label class="layui-form-labe2">商品分类：</label>
+										<span style="display:none;">{$category_id = $request->get('category_id') ?: null}</span>
+										<select class="form-control"  name="type_id"
+                                            data-am-selected="{searchBox: 1, btnSize: 'sm'}">
+                                        <option value="0">请选择</option>
+										{if isset($type)}{foreach ($type as $first)}
+                                            <option  {notempty name="$spec.type_id"}{if ($spec.type_id) eq ($first.id)} selected = "selected" {/if}{/notempty}value="{$first['id']}">
+                                                {$first['name']}</option>
+											{/foreach}{/if}
+                                        
+                                        </select>
+									</div>
+								</div>
+									<div class="layui-col-md4">
+										<button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+										<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+									</div>
+								
+					  </form>
+                    <div class="layui-col-sm12">
+					 <div class="box-body">
+					   <div class="row">
+						<div class="layui-col-md12" >
+                        <table width="100%" class="layui-table">
+                            <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>规格类型</th>
+								 <th>规格名</th>
+                                <th>规格项</th>
+                                <th>排序</th>
+                                <th>时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="list-table">
+                            {if (!empty($list))}
+                            {volist name="list" id="vo"}
+                                <tr>
+                                    <td class="layer-text-middle">
+									{$vo['id']}</td>
+									  <td align="left" class="layer-text-middle">
+										{$vo['gettype']['name']}
+									</td>
+                                    <td align="left" class="layer-text-middle">
+										
+									{$vo['name']}</td>
+									  <td align="left" class="layer-text-middle layer-text-middle-wth">
+										
+									{$vo['spec_item']}</td>
+                                    <td class="layer-text-middle">{$vo['order']}</td>
+                                    <td class="layer-text-middle">{$vo['create_time']|date="Y-m-d"}</td>
+                                    <td class="layer-text-middle">
+                                        <div class="tpl-table-black-operation">
+											<a href="{:url('item/saveSpec',
+                                                ['id' => $vo['id']])}">
+                                                <i class="mdi menu-icon mdi-grease-pencil"></i> 编辑
+                                            </a>
+                                            <a href="javascript:;" class="item-delete tpl-table-black-operation-del"
+                                               data-id="{$vo['id']}">
+                                                <i class="mdi menu-icon mdi-delete-forever"></i> 删除
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {/volist}
+							{else/}
+                               <tr>
+                                    <td colspan="11" class="layer-text-center">暂无记录</td>
+                                </tr>
+                            {/if}
+                            </tbody>
+                        </table>
+						</div>
+						{$list|raw}
+						</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+           // 删除元素
+               var url = "<?= url('item/delete') ?>";
+        $('.item-delete').delete('id', url,'','Spec');
+    });
+</script>

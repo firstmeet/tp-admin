@@ -1,0 +1,200 @@
+<div class="layui-container ">
+	<div class="layui-row">
+		<div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head">
+				<div class="widget-head layer-cf">
+					<div class="widget-title layer-fl">编辑优惠券</div>
+				</div>
+				<form id="my-form" class="layui-form" enctype="multipart/form-data" method="post">
+					<div class="widget-body layui-col-sm12 layui-col-md12 layui-col-lg12">
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require">优惠券名称 </label>
+							<div class="layui-col-md6 layer-u-end">
+								<input type="text" class="layui-input" name="coupon[name]"
+									   value="{$model['name']??''}" placeholder="请输入优惠券名称" required>
+								<small>例如：满100减10</small>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require">优惠券颜色 </label>
+							<div class="layui-col-md6 layer-u-end">
+								<label class="layer-radio-inline">
+									<input type="radio" name="coupon[color]" class="layui-input"
+										   value="10" {$model['color']['value'] === 10 ? 'checked' : ''}
+									data-am-ucheck>
+									蓝色
+								</label>
+								<label class="layer-radio-inline">
+									<input type="radio" name="coupon[color]" value="20" calss="layui-input"
+										   {$model['color']['value'] === 20 ? 'checked' : ''}
+									data-am-ucheck>
+									红色
+								</label>
+								<label class="layer-radio-inline">
+									<input type="radio" name="coupon[color]" value="30" calss="layui-input"
+										   {$model['color']['value'] === 30 ? 'checked' : ''}
+									data-am-ucheck>
+									紫色
+								</label>
+								<label class="layer-radio-inline">
+									<input type="radio" name="coupon[color]" value="40" calss="layui-input"
+										   {$model['color']['value'] === 40 ? 'checked' : ''}
+									data-am-ucheck>
+									黄色
+								</label>
+							</div>
+						</div>
+						<div class="layui-form-item" data-x-switch>
+							<label class="layui-form-label form-require">优惠券类型 </label>
+							<div class="layui-col-md6 layer-u-end">
+								<label class="layer-radio-inline">
+									<input type="radio" name="coupon[coupon_type]" value="10" calss="layui-input"
+										   data-am-ucheck
+										   data-switch-box="switch-coupon_type"
+										   data-switch-item="coupon_type__10"
+										   {$model['coupon_type']['value'] === 10 ? 'checked' : ''}>
+									满减券
+								</label>
+								<label class="layer-radio-inline">
+									<input type="radio" name="coupon[coupon_type]" value="20" calss="layui-input"
+										   data-am-ucheck
+										   data-switch-box="switch-coupon_type"
+										   data-switch-item="coupon_type__20"
+										   {$model['coupon_type']['value'] === 20 ? 'checked' : ''}>
+									折扣券
+								</label>
+							</div>
+						</div>
+						<div class="layui-form-item switch-coupon_type coupon_type__10 {$model['coupon_type']['value'] === 10 ? '' : 'hide'}">
+							<label class="layui-form-label form-require">减免金额 </label>
+							<div class="layui-col-md6 ">
+								<input type="number" min="1" calss="layui-input" name="coupon[reduce_price]"
+									   value="{$model['reduce_price']??''}" placeholder="请输入减免金额" >
+							</div>
+						</div>
+						<div class="layui-form-item switch-coupon_type coupon_type__20 {$model['coupon_type']['value'] === 20 ? '' : 'hide'}">
+							<label class="layui-form-label form-require">折扣率 </label>
+							<div class="layer-u-sm-9 layer-u-end">
+								<input type="number"  calss="layui-input" name="coupon[discount]" value="{$model['discount']??''}">
+								<small>折扣率范围1-100，90代表9折</small>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require">最低消费金额 </label>
+							<div class="layui-col-md6 layer-u-end">
+								<input type="number" min="1" calss="layui-input" name="coupon[min_price]"
+									   value="{$model['min_price']??''}" placeholder="请输入最低消费金额" required>
+							</div>
+						</div>
+						<div class="layui-form-item" data-x-switch>
+							<label class="layui-form-label form-require">到期类型 </label>
+							<div class="layui-col-md6 layer-u-end">
+								<label class="layer-radio-inline">
+									<input type="radio" name="coupon[expire_type]" value="10" calss="layui-input"
+										   data-am-ucheck
+										   data-switch-box="switch-expire_type"
+										   data-switch-item="expire_type__10"
+										   {$model['expire_type'] === 10 ? 'checked' : ''}>
+									领取后生效
+								</label>
+								<label class="layer-radio-inline">
+									<input type="radio" name="coupon[expire_type]" value="20" calss="layui-input"
+										   data-am-ucheck
+										   data-switch-box="switch-expire_type"
+										   data-switch-item="expire_type__20"
+										   {$model['expire_type'] === 20 ? 'checked' : ''}>
+									固定时间
+								</label>
+							</div>
+						</div>
+						<div class="layui-form-item switch-expire_type expire_type__10 <?= $model['expire_type'] === 10 ? '' : 'hide' ?>">
+							<label class="layui-form-label form-require">有效天数 </label>
+							<div class="layui-col-md6 layer-u-end">
+								<input type="number" min="1" calss="layui-input" name="coupon[expire_day]"
+									   value="{$model['expire_day']??''}" placeholder="请输入有效天数" required>
+							</div>
+						</div>
+						<div class="layui-form-item switch-expire_type expire_type__20 <?= $model['expire_type'] === 20 ? '' : 'hide' ?>">
+							<label class="layui-form-label form-require">时间范围 </label>
+							<div class="layui-col-md6 layer-u-end">
+								<input type="text" id="test1" class="j-startTime layui-input layer-margin-bottom-sm"
+									   name="coupon[start_time]"
+									   value="{$model['start_time']['value'] > 1 ? $model['start_time']['text'] : ''}"
+									   placeholder="请选择开始日期"
+								>
+								<input type="text" id="test2"class="j-endTime layui-input"
+									   name="coupon[end_time]"
+									   value="{$model['end_time']['value'] > 1 ? $model['end_time']['text'] : ''}"
+									   placeholder="请选择结束日期"/>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require">发放总数量 </label>
+							<div class="layui-col-md6 layer-u-end">
+								<input type="number" min="-1" calss="layui-input" name="coupon[total_num]"
+									   value="{$model['total_num']??''}" required>
+								<small>限制领取的优惠券数量，-1为不限制</small>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require">排序 </label>
+							<div class="layui-col-md6 layer-u-end">
+								<input type="number" min="0" calss="layui-input" name="coupon[sort]"
+									   value="{$model['sort']??''}" required>
+							</div>
+						</div>
+						<div>
+							<input type="hidden" name="coupon[coupon_id]" value="{$data['coupon_id']??''}">
+						</div>
+						<div class="layui-form-item">
+							<div class="layer-u-sm-9 layer-u-sm-push-3 layer-margin-top-lg">
+								<button type="submit" class="j-submit layui-btn layer-btn-secondary">提交
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+    /**
+     * 时间选择
+     */
+    $(function () {
+        /**
+         * 时间选择
+         */
+        layui.use('laydate', function(){
+            var laydate = layui.laydate;
+
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#test1' //指定元素
+            });
+            laydate.render({
+                elem: '#test2' //指定元素
+            });
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+
+        // swith切换
+        var $mySwitch = $('[data-x-switch]');
+        $mySwitch.find('[data-switch-item]').click(function () {
+            var $mySwitchBox = $('.' + $(this).data('switch-box'));
+            $mySwitchBox.hide().filter('.' + $(this).data('switch-item')).show();
+        });
+
+        /**
+         * 表单验证提交
+         * @type {*}
+         */
+        $('#my-form').superForm();
+
+    });
+</script>

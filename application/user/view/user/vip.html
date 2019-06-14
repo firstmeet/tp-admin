@@ -1,0 +1,373 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md12 layui-col-xs12">  
+			    <div class="widget-head">
+                    <div class="widget-title">会员卡管理</div>
+                </div>
+				<form id="my-form" class="layui-form" method="post">
+					<div class="layui-col-md12 widget-body">
+							<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+								<ul class="layui-tab-title">
+									<li class="layui-this">普通会员</li>
+									<li>高级会员</li>
+									<li>至尊会员</li>
+								</ul>							
+									<div class="layui-tab-content" style="height: 100px;">
+										<div class="layui-tab-item layui-show">
+											 <div class="layer-tab-item" >
+												<div class="leftpart layui-col-md3" >
+													<div class="onecard yellowbg">
+														<div class="cardbigtop type_first" style="background-image:url({notempty name="$list[0]"}{$list[0]['values']['background']}{/notempty}); color:{notempty name="$list[0]" } {$list[0]['values']['color']}{/notempty};" >
+														   <p>
+																<span><i></i><b class="ng-binding first_name">{notempty name='list'}{$list[0]['name']}{else/}普通会员{/notempty}</b></span>
+																<em>按规则发卡</em>
+															</p>
+															<h4>编号：20180216465434346545421</h4>
+														</div>
+														<h5><b>编辑会员卡</b><s class="greencolor">正常使用</s></h5>
+													</div>
+												</div>
+												<div class="layui-col-md6">
+													<div class="layui-form-item">
+														<label class="layui-form-label">会员卡名称</label>
+														<div class="layui-input-block">
+															<input type="text"  class="layui-input" name="level[first][name]"  onporpertychange="upperCase(this.value,'first')" oninput="upperCase(this.value,'first')" value="{notempty name='list'}{$list[0]['name']}{else/}普通会员{/notempty}"   >
+														</div>
+													</div>
+													<div class="layui-form-item">
+														<label class="layui-form-label">会员卡编号</label>
+														<div class="layui-input-block">
+															<input type="text"  class="layui-input" name="level[first_card]"disabled="disabled" value="按年月日计算"  ><small></small>
+														</div>
+													</div>
+													<div class="layui-form-item">
+														<label class="layui-form-label"> 所需积分 </label>
+														<div class="layui-input-block" id="level[first][integral]">
+															<input type="text" class="layui-input"  name="level[first][integral]"  value="{notempty name='list'}{$list[0]['integral']}{/notempty}"  >
+														</div>
+													</div>
+													<div class="layui-form-item">
+														<label class="layui-form-label"> 会员折扣 </label>
+														<div class="layui-input-block" id="level[first][agio]">
+															<input type="text" class="layui-input" name="level[first][agio]"  value="{notempty name='list'}{$list[0]['agio']}{/notempty}"  >
+															<small>折扣比例范围 0 - 10</small>
+														</div>
+														
+													</div>
+													<div class="layui-form-item">
+														<label class="layui-form-label">背景图片</label>
+														<div class="layui-input-block">
+															<div class="uploader-list ">
+																<input class="" style="width:55px;padding:0;" data-type="first"  type="hidden" name="level[first][background]"
+																value="{notempty name="$list[0]"}{$list[0]['values']['background']}{/notempty}">
+															</div>
+															
+															<button  type="button" class="upload-file layui-btn ">
+																<i class="mdi menu-icon mdi-plus"></i> 选择图片
+															</button>
+														</div>
+													</div>
+													<div class="layui-form-item">
+														<label class="layui-form-label">字体颜色 </label>
+														<div class="layui-input-block">
+															<div class="layui-input-inline" style="width: 120px;">
+															<input type="text" name="level[first][color]" value="{notempty name="$list[0]"}{$list[0]['values']['color']}{/notempty}" placeholder="请选择颜色" class="layui-input test-form-input test-form1" >
+															</div>
+															<div class="layui-inline" style="left: 64px; ">
+															<div class="test-form" id="test1"></div>
+															</div>
+														</div>
+													</div>
+													<div class="layui-form-item">
+														<label class="layui-form-label">会员卡特权 </label>
+														<div class="layui-input-block">
+															<input type="checkbox" name="level[first][levelpayment]" value="1" title="支持会员支付" {notempty  name="$list"}{notempty name="$list[0]['values']['levelpayment']"}{if condition="$list[0]['values']['levelpayment'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}> </label>
+															<input type="checkbox" name="level[first][discount]"     value="1" title="支持会员打折" {notempty  name="$list"}{notempty name="$list[0]['values']['discount']"}{if condition="$list[0]['values']['discount'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}> </label>
+															<input type="checkbox" name="level[first][birthdayfree]"  value="1" title="支持生日免单" {notempty  name="$list"}{notempty name="$list[0]['values']['birthdayfree']"}{if condition="$list[0]['values']['birthdayfree'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}> </label>
+															<input type="checkbox" name="level[first][quickrefund]" value="1" title="极速退款" {notempty  name="$list"}{notempty name="$list[0]['values']['quickrefund']"}{if condition="$list[0]['values']['quickrefund'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}>  </label>
+															<input type="checkbox" name="level[first][Customer]" value="1" title="客服优先" {notempty  name="$list"}{notempty name="$list[0]['values']['Customer']"}{if condition="$list[0]['values']['Customer'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}>  </label>
+															<input type="checkbox" name="level[first][halved]"   value="1" title="配送费减半" {notempty  name="$list"}{notempty name="$list[0]['values']['halved']"}{if condition="$list[0]['values']['halved'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}> </label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="layui-tab-item">	
+												<div class="leftpart layui-col-md3">
+													<div class="onecard yellowbg ">
+														<a href="#">
+															<div class="cardbigtop type_two" style="background-image:url({notempty name="$list[1]"}{$list[1]['values']['background']}{/notempty}); color:{notempty name="$list[1]" } {$list[1]['values']['color']}{/notempty}">
+															   <p>
+																	<span><i></i><b class="ng-binding two_name">{notempty name='list'}{$list[1]['name']}{else/}高级会员{/notempty}</b></span>
+																	<em>按规则发卡</em>
+																</p>
+																<h4>编号：20180216465434346545421</h4>
+															</div>
+
+															<h5><b>编辑会员卡</b><s class="greencolor">正常使用</s></h5>
+														</a>
+													</div>
+												</div>									
+												<div class="layui-col-md6">
+													<div class="layui-form-item">
+														<label class="layui-form-label">会员卡名称</label>
+														<div class="layui-input-block">
+															<input type="text" min="0" max="100" class="layui-input" name="level[two][name]"onporpertychange="upperCase(this.value,'two')" oninput="upperCase(this.value,'two')"  value=" {notempty name='list'}{$list[1]['name']}{else/}高级会员{/notempty} "  >
+														</div>
+													</div>
+												    <div class="layui-form-item">
+														<label class="layui-form-label">会员卡编号</label>
+														<div class="layui-input-block">
+															<input type="text"  class="layui-input" name="level[tow_card]"disabled="disabled" value="按年月日计算"  ><small></small>
+														</div>
+													</div>
+													<div class="layui-form-item">
+														<label class="layui-form-label"> 所需积分 </label>
+														<div class="layui-input-block" id="level[two][integral]">
+															<input type="text"  name="level[two][integral]" class="layui-input" value=" {notempty name='list'} {$list[1]['integral']}{/notempty}"  >
+
+														</div>
+													</div>
+													<div class="layui-form-item">
+														<label class="layui-form-label"> 会员折扣 </label>
+														<div class="layui-input-block" id="level[two][agio]">
+															
+															<input type="text"  name="level[two][agio]" class="layui-input" value="{notempty name='list'}{$list[1]['agio']}{/notempty}"  >
+															<small>折扣比例范围 0 - 10</small>
+														</div>
+													</div>
+													
+													<div class="layui-form-item">
+														<label class="layui-form-label">背景图片</label>
+														<div class="layui-input-block">
+															<div class="uploader-list2 ">
+															<input class=""  style="width:55px;padding:0;"  type="hidden" name="level[two][background]"
+																value="{notempty name="$list[1]"}{$list[1]['values']['background']}{/notempty}">
+															</div>
+															<button data-type="two" type="button"
+																		class="upload-file2 layui-btn ">
+																	<i class="mdi menu-icon mdi-plus"></i> 选择图片
+																</button>
+														</div>
+													</div>
+													<div class="layui-form-item">
+														<label class="layui-form-label">字体颜色 </label>
+														<div class="layui-input-block">
+															<div class="layui-input-inline" style="width: 120px;">
+															<input type="text" name="level[two][color]" value="{notempty name="$list[1]"}{$list[1]['values']['color']}{/notempty}" placeholder="请选择颜色" class="layui-input test-form-input test-form2">
+															</div>
+															<div class="layui-inline" style="left: 64px;">
+															<div class="test-form" id="test2"></div>
+															</div>
+														</div>
+													</div>
+													<div class="layui-form-item">
+														<label class="layui-form-label">会员卡特权 </label>
+														<div class="layui-input-block">
+															<input type="checkbox" name="level[two][levelpayment]" value="1" title="支持会员支付" {notempty  name="$list"}{notempty name="$list[1]['values']['levelpayment']"}{if condition="$list[1]['values']['levelpayment'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}> </label>
+															<input type="checkbox" name="level[two][discount]"   value="1" title="支持会员打折"   {notempty  name="$list"}{notempty name="$list[1]['values']['discount']" }{if condition="$list[1]['values']['discount'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}> </label>
+															<input type="checkbox" name="level[two][birthdayfree]"  value="1" title="支持生日免单" {notempty  name="$list"}{notempty name="$list[1]['values']['birthdayfree']"}{if condition="$list[1]['values']['birthdayfree'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}> </label>
+															<input type="checkbox" name="level[two][quickrefund]" value="1" title="极速退款" {notempty  name="$list"}{notempty name="$list[1]['values']['quickrefund']"}{if condition="$list[1]['values']['quickrefund'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}>  </label>
+															<input type="checkbox" name="level[two][Customer]" value="1" title="客服优先" {notempty  name="$list"}{notempty name="$list[1]['values']['Customer']"}{if condition="$list[1]['values']['Customer'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}>  </label>
+															<input type="checkbox" name="level[two][halved]"   value="1" title="配送费减半" {notempty  name="$list"}{notempty name="$list[1]['values']['halved']"}{if condition="$list[1]['values']['halved'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}> </label>
+														</div>
+													</div>
+												
+											    </div>
+									    </div>
+										<div class="layui-tab-item">
+											<div class="leftpart layui-col-md3">
+												<div class="onecard yellowbg">
+													<a href="#">
+														<div class="cardbigtop type_three"  style="background-image:url({notempty name="$list[2]" } {$list[2]['values']['background']}{/notempty}); color:{notempty name="$list[2]" } {$list[2]['values']['color']}{/notempty};">
+															<p>
+																<span><i></i><b class="ng-binding three_name">
+																{notempty name='list'}{$list[2]['name']}{else/}至尊会员{/notempty}</b></span><em>按规则发卡</em>
+															</p>
+															<h4>编号：20180216465434346545421</h4>
+														</div>
+
+														<h5><b>编辑会员卡</b><s class="greencolor">正常使用</s></h5>
+													</a>
+												</div>
+											</div>
+											<div class="layui-col-md6">
+												<div class="layui-form-item">
+													<label class="layui-form-label">会员卡名称</label>
+													<div class="layui-input-block">
+														<input type="text" min="0" max="100"  class="layui-input" name="level[three][name]"onporpertychange="upperCase(this.value,'three')" oninput="upperCase(this.value,'three')" value="{notempty name='list'}{$list[2]['name']}{else/}至尊会员{/notempty}"  >
+													</div>
+												</div>
+												<div class="layui-form-item">
+														<label class="layui-form-label">会员卡编号</label>
+														<div class="layui-input-block">
+															<input type="text"  class="layui-input" name="level[three_card]"disabled="disabled" value="按年月日计算"  ><small></small>
+														</div>
+													</div>
+												<div class="layui-form-item">
+													<label class="layui-form-label"> 所需积分 </label>
+													<div class="layui-input-block" id="level[three][integral]">
+														
+															<input type="text"  name="level[three][integral]" class="layui-input" value="{notempty name='list'}{$list[2]['integral']}{/notempty}"  >
+														</div>
+												</div>
+												<div class="layui-form-item">
+													<label class="layui-form-label"> 会员折扣 </label>
+													<div class="layui-input-block" id="level[three][agio]">
+													
+														
+														<input type="text"  name="level[three][agio]" class="layui-input" value="{notempty name='list'}{$list[2]['agio']}{/notempty}"  >
+														<small>折扣比例范围 0 - 10</small>
+													</div>
+												</div>
+												<div class="layui-form-item">
+													<label class="layui-form-label">背景图片</label>
+													<div class="layui-input-block">
+														<div class="uploader-list3 ">
+															<input class="" style="width:55px;padding:0;"  type="hidden" name="level[three][background]"
+															value="{notempty name="$list[2]" } {$list[2]['values']['background']}{/notempty}">
+															
+															
+														</div>
+														
+														<button  type="button" class="upload-file3 layui-btn ">
+															<i class="mdi menu-icon mdi-plus"></i> 选择图片	
+														</button>
+													</div>
+												</div>
+												<div class="layui-form-item">
+														<label class="layui-form-label">字体颜色 </label>
+														<div class="layui-input-block">
+														<div class="layui-input-inline" style="width: 120px;">
+															<input type="text" name="level[three][color]" value="{notempty name="$list[2]" } {$list[2]['values']['color']}{/notempty}" placeholder="请选择颜色" class="layui-input test-form-input test-form3">
+															</div>
+															<div class="layui-inline" style="left: 64px;">
+															<div data-id="3" id="test3" class="test-form"></div>
+															</div>
+														</div>
+													</div>
+												<div class="layui-form-item">
+														<label class="layui-form-label">会员卡特权 </label>
+														<div class="layui-input-block">
+															<input type="checkbox" name="level[three][levelpayment]" value="1" title="支持会员支付" {notempty  name="$list"}{notempty name="$list[2]['values']['levelpayment']"}{if condition="$list[2]['values']['levelpayment'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}> </label>
+															<input type="checkbox" name="level[three][discount]"     value="1" title="支持会员打折" {notempty  name="$list"}{notempty name="$list[2]['values']['discount']"}{if condition="$list[2]['values']['discount'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}> </label>
+															<input type="checkbox" name="level[three][birthdayfree]"  value="1" title="支持生日免单" {notempty  name="$list"}{notempty name="$list[2]['values']['birthdayfree']"}{if condition="$list[2]['values']['birthdayfree'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}> </label>
+															<input type="checkbox" name="level[three][quickrefund]" value="1" title="极速退款" {notempty  name="$list"}{notempty name="$list[2]['values']['quickrefund']"}{if condition="$list[2]['values']['quickrefund'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}></label>
+															<input type="checkbox" name="level[three][Customer]" value="1" title="客服优先" {notempty  name="$list"}{notempty name="$list[2]['values']['Customer']"}{if condition="$list[2]['values']['Customer'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}>  </label>
+															<input type="checkbox" name="level[three][halved]"   value="1" title="配送费减半" {notempty  name="$list"}{notempty name="$list[2]['values']['halved']"}{if condition="$list[2]['values']['halved'] eq 1"}checked='checked'{/if}{/notempty}{/notempty}> </label>
+														</div>
+													</div>
+											
+											</div> 
+										</div>
+									  </div>
+									</div> 
+							
+						
+						<div class="layui-form-item">
+						<div class="layui-col-md9 layui-col-md3">
+							<button type="submit" class="j-submit layui-btn layui-col-md-offset5">提交</button>
+						</div>
+					</div>
+					</div> 
+				</div>
+					
+				</form>
+		    </div>
+	    </div>		
+	</div>
+</div>
+
+<!-- 文件库弹窗 -->
+{include file="layouts/_template/file_library" /}
+<script>
+$(document).ready(function(){
+layui.use('colorpicker', function(){
+
+  var $ = layui.$	
+  ,colorpicker = layui.colorpicker;
+  
+    colorpicker.render({
+    elem: '#test1'
+    ,color: '#1c97f5'
+	,predefine: true // 开启预定义颜色
+    ,done: function(color){
+      $(".test-form1").val(color);
+    },
+	
+  });
+   colorpicker.render({
+    elem: '#test2'
+    ,color: '#1c97f5'
+	,predefine: true // 开启预定义颜色
+    ,done: function(color){
+      $(".test-form2").val(color);
+    },
+	
+  });
+   colorpicker.render({
+    elem: '#test3'
+    ,color: '#1c97f5'
+	,predefine: true // 开启预定义颜色
+    ,done: function(color){
+      $(".test-form3").val(color);
+    },
+	
+  });
+  });
+	 // 选择图片
+	$('.upload-file').selectImages({
+		name: 'goods[original_img]'
+		, multiple: false,
+		 done: function (data) {
+		 
+				$(".uploader-list input").val(data[0].file_path);
+				$(".type_first").css("background-image","url(" + data[0].file_path + ")");
+            }
+		
+	});
+		 // 选择图片
+	$('.upload-file2').selectImages({
+		name: 'goods[original_img]'
+		, multiple: false,
+		 done: function (data) {
+			$(".uploader-list2 input").val(data[0].file_path);
+			$(".type_two").css("background-image","url(" + data[0].file_path + ")");
+			}
+	});
+	// 选择图片
+	$('.upload-file3').selectImages({
+		name: 'goods[original_img]'
+		, multiple: false,
+		 done: function (data) {
+
+			$(".uploader-list3 input").val(data[0].file_path);
+			$(".type_three").css("background-image","url(" + data[0].file_path + ")");
+        }
+		
+	});
+ //地址的定位
+	layui.use('element', function(){
+		var $ = layui.jquery
+		,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+	});
+$(".color").change(function(){
+	var color= $(this).val();
+	var type=$(this).data('type');
+	var bind=$(this).data('bind');
+	if(bind){
+		$(".type_"+type).css("color",color);
+	}else{
+		$(".type_"+type).css("background-color",color);
+	}
+	
+})
+
+ $('#my-form').superForm();
+})
+
+ function upperCase(content,name){
+	$("."+name+"_name").html(content);
+ }
+</script>

@@ -1,0 +1,135 @@
+<div class="layui-container">
+  <div class="layui-row">
+    <div class="layui-col-md12 layui-col-xs12">
+		<div class="widget-head">
+			<div class="widget-title">用户列表</div>
+		</div>
+	</div>
+	<div class="layui-col-md12 layui-col-xs12 widget-body ">
+		<form class="layui-form"  method="post" action="{Url('User/index')}"> 
+		    <div class="layui-u-sm-12 layui-u-md-12 layui-col-lg12">
+			    <div class="layui-form-item "> 
+			        <div class="layui-col-md4 layui-col-flex">				
+						<label class="layui-form-label">性别：</label>
+					   {$gender = $request->get('gender')}
+						<select class="form-control" name="gender"
+								data-layer-selected="{btnSize: 'sm', placeholder: '性别'}">
+							<option value="-1"
+								{$gender === '-1' ? 'selected' : ''}>全部
+							</option>
+							<option value="1"
+								{$gender === '1' ? 'selected' : ''}>男
+							</option>
+							<option value="2"
+								{$gender === '2' ? 'selected' : ''}>女
+							</option>
+							<option value="0"
+								{$gender === '0' ? 'selected' : ''}>未知
+							</option>
+						</select>
+					</div>
+					<div class="layui-col-md3">
+						<label class="layui-form-label">微信昵称：</label>
+						<div class="layui-input-inline">
+							<input name="nickName" type="text"  class="layui-input" placeholder="请输入微信昵称" value="{$request->get('nickName ')}">	
+						</div>
+					</div>
+					<div class="layui-col-md3 laui-col-width" >
+						<button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+					</div>
+				</div>	
+			</div>
+		</form>
+		<div class="layui-col-md12" >
+			<table class="layui-table">
+				<thead>
+					<tr>
+					   <th>ID</th>
+						<th>头像</th>
+						<th>昵称</th>
+						<th>性别</th>
+						<th>省市</th>
+						<th>上级</th>
+						<th>消费</th>
+						<th>余额</th>
+						<th>积分</th>
+						<th>注册时间</th>
+						<th>操作</th>
+					</tr> 
+				</thead>
+				<tbody>
+					{if (!$list->isEmpty())}{foreach ($list as $item)}
+					<tr>
+						<td>{$item['user_id']}</td>
+						<td>
+							<a href="{$item['avatarUrl']}" title="点击查看大图" target="_blank">
+								<img src="{$item['avatarUrl']}" width="50" height="50" alt="">
+							</a>
+						</td>
+						<td>{$item['nickName']}</td>
+						<td>{$item['gender']}</td>
+						<td>{$item['country']}{$item['province'] ?: ''}{$item['city'] ?: '--'}</td>
+						<td>{$item['users']['nickName'] ?: '无'}</td>
+						<td>{$item['shop_money']}</td>
+						<td>{$item['money']}</td>
+						<td>{$item['integral']}</td>
+						<td>{$item['create_time']}</td>
+						<td>
+							<div class="tpl-table-black-operation">
+								<a class="tpl-table-black-operation-warning" href="{:url('order/allList',
+									['user_id' => $item['user_id']])}"
+								   class="tpl-table-black-operation-del"
+								   data-id="{$item['user_id']}">
+									<i class="mdi menu-icon mdi-border-color"></i> 订单
+								</a>
+								<a class="tpl-table-black-operation-success" href="{:url('item/comment',
+									['user_id' => $item['user_id']])}"
+								   class="tpl-table-black-operation-del"
+								   data-id="{$item['user_id']}">
+									<i class="mdi menu-icon mdi-grease-pencil"></i> 评价
+								</a>
+								<a class="tpl-table-black-operation-primary" href="{:url('user/index',
+									['pid' => $item['user_id']])}"
+								   class="tpl-table-black-operation-del"
+								   data-id="{$item['user_id']}">
+									<i class="mdi menu-icon mdi-telegram"></i> 推荐
+								</a>
+								<a class="tpl-table-black-operation-primary" href="{:url('user/profit',
+									['uid' => $item['user_id']])}"
+								   class="tpl-table-black-operation-del"
+								   data-id="{$item['user_id']}">
+									<i class="mdi menu-icon mdi-telegram"></i> 收益
+								</a>
+								 <a href="javascript:void(0);"
+								   class="item-delete tpl-table-black-operation-del"
+								   data-id="{$item['user_id']}">
+									<i class="mdi menu-icon mdi-pencil-lock"></i>  冻结
+								</a>
+							</div>
+						</td>
+					</tr>
+					{/foreach}{else/}
+						<tr>
+							<td colspan="12" class="layer-text-center" >暂无记录</td>
+						</tr>
+					{/if}
+				</tbody>
+			</table>
+			<div class="layui-col-md12 layui-col-xs12">
+				<div class="">{$page|raw} </div>
+				<div class="pagination-total">
+					<div class="">总记录：{$list->total()}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>
+</div>  
+<script>
+    $(function () {
+        // 删除元素
+        var url = "index.php?s=/user/user/delete";
+        $('.item-delete').delete('user_id', url, '确定要冻结此用户吗？');
+
+    });
+</script>

@@ -1,0 +1,77 @@
+<div class="layui-container">
+    <div class="layui-row">
+		<div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<form id="my-form" class="layui-form" method="post" enctype="multipart/form-data">
+				<div class="widget-head">
+					<div class="widget-title">批量发货</div>
+				</div>
+				<div class="widget-body  layui-col-sm12 layui-col-md12 layui-col-lg12">
+						<div class="layui-form-item">
+							<label class="layui-form-label ">导入发货模板 </label>
+							<div class="layui-input-block">
+									<button type="button" class="upload-file layui-btn ">
+										<i class="layer-icon-cloud-upload"></i> 选择模板
+									</button>
+									<input id="doc-form-file" name="iFile" type="file" multiple="multiple" required>
+								<div class="file-list"></div>
+								<div class="help-block">
+									<small><a href="{:url('operate/deliveryTpl')}">默认模板格式下载</a>
+									</small>
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label ">物流公司 </label>
+							<div class="layui-input-block">
+								<select name="order[express_id]"
+										data-layer-selected="{btnSize: 'sm', maxHeight: 240}" required>
+									<option value=""></option>
+									{if isset($express)}
+										{foreach  $express as $key=>$val}
+
+										<option value="{$val['express_id']}">
+											{$val['express_name']}</option>
+											{/foreach}
+											{/if}
+							
+								</select>
+								<div class="help-block">
+									<small>可在 <a href="{:url('setting/express')}"
+												 target="_blank">物流公司列表</a>
+										中设置
+									</small>
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+
+								<button type="submit" class="j-submit layui-btn">提交
+								</button>
+						</div>
+				</div>
+			</form>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+
+        /**
+         * 文件列表
+         */
+        $('#doc-form-file').on('change', function () {
+            var fileNames = '';
+            $.each(this.files, function () {
+                fileNames += '<span class="layer-badge layer-badge-success">' + this.name + '</span> ';
+            });
+            $('.file-list').html(fileNames);
+        });
+
+        /**
+         * 表单验证提交
+         * @type {*}
+         */
+        $('#my-form').superForm();
+
+    });
+</script>

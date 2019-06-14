@@ -1,0 +1,81 @@
+<!-- 商品属性模板 -->
+<script id="tpl_attr_attrbute" type="text/template">
+    {{ each data }}
+		<tr class='attr_{{ $value['attr_id'] }} layer-form-group' style='height:50px'>
+		<td class='layui-col-sm4 layui-col-lg2 layer-form-label'> {{ $value['name'] }}</td>
+		<td class='layui-col-sm8 layer-u-end'>
+		{{ if $value['values'].length <= 1 }}
+			<input type='text' size='40' value="{{ if $value.item_attr.length>0 }}{{ $value.item_attr[0]['attr_value'] }}{{ else }}{{ $value.values[0] }}{{ /if }}" name='goods[attr][{{ $value["attr_id"] }}]' />
+		{{ else }}
+			
+			<select class="form-control" name="goods[attr][{{ $value['attr_id'] }}]">
+				{{ each $value['values'] as $val }}
+					{{ if $value['item_attr'].length>1 }}
+						<option {{ if $value['item_attr'][0]['attr_value'] == $val }} selected='selected' {{ /if }} value=" {{ $val }} ">{{ $val }}</option>
+					{{ else }}
+					<option value='{{ $val }}'>{{ $val }}</option>
+					{{ /if }}
+					
+				{{ /each }}
+			</select>
+			
+		{{ /if }}
+		</td>
+		</tr>
+    {{ /each }}
+</script>
+<!-- 商品规格模板 -->
+<script id="tpl_spec_attr" type="text/template">
+		<div class="layer-tab-panel layer-margin-top-lg layer-active layer-in" id="goods_spec_table1">                                
+			<div class="layer-form-group">
+				<div class="layui-col-sm3 layui-col-lg2 layer-form-label" colspan="2"><b>商品规格:</b></div>
+			</div>
+			{{ each data.list }}
+				<div class="layer-form-group">
+					<div class="layui-col-sm3 layui-col-lg2 layer-form-label">{{ $value['name'] }}:</div>
+					<div class="layui-col-sm7 layer-u-end"> 
+						{{ each $value.spec_item as $val  }}
+							<button type="button" data-spec_id="{{ $value.id }}" data-item_id="{{ $val['id'] }}" onclick="layerbtn(this)" class="spec_list layui-btn layui-btn-sm">
+							{{ $val['item'] }}
+							</button>
+						{{ /each }}
+					</div>
+				</div>                                    
+			{{ /each }} 
+		</div>
+		<div id="goods_spec_table2"> 
+    
+</script>
+<!-- 商品规格table模板 -->
+<script id="tpl_spec_table" type="text/template">
+    <tbody id='spec_input_tab'>
+    <tr>
+        {{ each data.title }}
+        <th>{{ $value}}</th>
+        {{ /each }}
+		  <th>市场价</th>
+		 <th>成本价</th>
+        <th>库存</th>
+        <th>商品编码</th>
+    </tr>
+    {{ each data.list }}
+		<tr>
+		{{ each $value.name as $vo $key }}
+		<td>
+			{{ $vo }}
+		</td>{{ /each }}
+		<td> 
+			<input type="number" name="goods[sku][{{ $value.id }}][shop_price]" min="1" step="0.00"  placeholder="0" value="{{ $value['form']['shop_price'] ? $value['form']['shop_price'] : 0 }}" required/>
+		</td>
+		<td>  
+			<input type="number" name="goods[sku][{{ $value.id }}][price]" min="1" step="0.00" placeholder="0" value="{{ $value['form']['price'] ? $value['form']['price'] : 0 }}" required/>
+		</td>
+		<td> 
+			<input type="number" name="goods[sku][{{ $value.id }}][store_count]" min="1" placeholder="0" value="{{ $value['form']['store_count'] ? $value['form']['store_count'] : 0 }}" >
+		</td>
+		<td>  
+			<input type="number" name="goods[sku][{{ $value.id }}][sku]" min="1" placeholder="0" value="{{ $value['form']['sku'] ? $value['form']['sku'] : 0 }}" /> </td>
+		</tr>
+    {{ /each }}
+    </tbody>
+</script>

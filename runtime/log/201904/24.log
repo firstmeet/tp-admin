@@ -1,0 +1,493 @@
+---------------------------------------------------------------
+[2019-04-24T16:03:12+08:00] 171.43.250.111 GET mf.iirr5.com/index.php?s=/user/index/index.html
+[运行时间：0.118628s] [吞吐率：8.43req/s] [内存消耗：6,571.81kb] [文件加载：103]
+[ info ] [ LANG ] /www/wwwroot/mf.iirr5.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://mf.iirr5.com/index.php?s=/user/app/setting.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=mp4u9t4869rpvfur0e9a6g5460',
+  'host' => 'mf.iirr5.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /www/wwwroot/mf.iirr5.com/application/user/view/index/index.html [ array (
+  0 => 'base_url',
+  1 => 'store_url',
+  2 => 'group',
+  3 => 'url',
+  4 => 'menu',
+  5 => 'store',
+  6 => 'request',
+  7 => 'data',
+  8 => 'version',
+  9 => 'log',
+) ]
+---------------------------------------------------------------
+[2019-04-24T16:06:39+08:00] 180.106.229.94 GET mf.iirr5.com/uploads/20190420110040cc45c4932.png
+[运行时间：0.019789s] [吞吐率：50.53req/s] [内存消耗：1,885.09kb] [文件加载：55]
+[ info ] [ LANG ] /www/wwwroot/mf.iirr5.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+[2019-04-24T16:06:39+08:00] 180.106.229.94 GET mf.iirr5.com/uploads/201904201100153a9fb1736.jpg
+[运行时间：0.022729s] [吞吐率：44.00req/s] [内存消耗：1,885.09kb] [文件加载：55]
+[ info ] [ LANG ] /www/wwwroot/mf.iirr5.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+[2019-04-24T16:07:36+08:00] 180.106.229.94 GET mf.iirr5.com/uploads/20190420110040cc45c4932.png
+[运行时间：0.018064s] [吞吐率：55.36req/s] [内存消耗：1,885.09kb] [文件加载：55]
+[ info ] [ LANG ] /www/wwwroot/mf.iirr5.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+[2019-04-24T16:07:36+08:00] 180.106.229.94 GET mf.iirr5.com/uploads/201904201100153a9fb1736.jpg
+[运行时间：0.021940s] [吞吐率：45.58req/s] [内存消耗：1,885.09kb] [文件加载：55]
+[ info ] [ LANG ] /www/wwwroot/mf.iirr5.com/thinkphp/lang/zh-cn.php
+---------------------------------------------------------------
+[2019-04-24T16:11:39+08:00] 171.43.250.111 GET mf.iirr5.com/index.php?s=/user/setting/index.html
+[运行时间：0.059238s] [吞吐率：16.88req/s] [内存消耗：5,704.80kb] [文件加载：94]
+[ info ] [ LANG ] /www/wwwroot/mf.iirr5.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://mf.iirr5.com/index.php?s=/user/index/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=mp4u9t4869rpvfur0e9a6g5460',
+  'host' => 'mf.iirr5.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /www/wwwroot/mf.iirr5.com/application/user/view/setting/store.html [ array (
+  0 => 'base_url',
+  1 => 'store_url',
+  2 => 'group',
+  3 => 'url',
+  4 => 'menu',
+  5 => 'store',
+  6 => 'request',
+  7 => 'values',
+) ]
+---------------------------------------------------------------
+[2019-04-24T16:11:41+08:00] 171.43.250.111 GET mf.iirr5.com/index.php?s=/user/setting/agent.html
+[运行时间：0.068862s] [吞吐率：14.52req/s] [内存消耗：5,701.74kb] [文件加载：94]
+[ info ] [ LANG ] /www/wwwroot/mf.iirr5.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://mf.iirr5.com/index.php?s=/user/setting/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=mp4u9t4869rpvfur0e9a6g5460',
+  'host' => 'mf.iirr5.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /www/wwwroot/mf.iirr5.com/application/user/view/setting/agent.html [ array (
+  0 => 'base_url',
+  1 => 'store_url',
+  2 => 'group',
+  3 => 'url',
+  4 => 'menu',
+  5 => 'store',
+  6 => 'request',
+  7 => 'data',
+) ]
+---------------------------------------------------------------
+[2019-04-24T16:11:43+08:00] 171.43.250.111 POST mf.iirr5.com/index.php?s=/user/setting/agent.html
+[运行时间：0.060387s] [吞吐率：16.56req/s] [内存消耗：5,420.08kb] [文件加载：91]
+[ info ] [ LANG ] /www/wwwroot/mf.iirr5.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'https://mf.iirr5.com',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36',
+  'referer' => 'https://mf.iirr5.com/index.php?s=/user/setting/agent.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=mp4u9t4869rpvfur0e9a6g5460',
+  'host' => 'mf.iirr5.com',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'content-length' => '1827',
+)
+[ info ] [ PARAM ] array (
+  'setting' => 
+  array (
+    'basic' => 
+    array (
+      'is_open' => '1',
+      'level' => '2',
+    ),
+    'commission' => 
+    array (
+      'first_money' => '',
+      'second_money' => '',
+      'third_money' => '',
+    ),
+    'settlement' => 
+    array (
+      'min_money' => '',
+    ),
+    'words' => 
+    array (
+      'order' => 
+      array (
+        'title' => 
+        array (
+          'value' => '',
+        ),
+        'words' => 
+        array (
+          'all' => 
+          array (
+            'value' => '',
+          ),
+          'unsettled' => 
+          array (
+            'value' => '',
+          ),
+          'settled' => 
+          array (
+            'value' => '',
+          ),
+        ),
+      ),
+      'team' => 
+      array (
+        'title' => 
+        array (
+          'value' => '',
+        ),
+        'words' => 
+        array (
+          'total_team' => 
+          array (
+            'value' => ' ',
+          ),
+          'first' => 
+          array (
+            'value' => ' ',
+          ),
+          'second' => 
+          array (
+            'value' => ' ',
+          ),
+          'third' => 
+          array (
+            'value' => ' ',
+          ),
+        ),
+      ),
+      'withdraw_list' => 
+      array (
+        'title' => 
+        array (
+          'value' => '',
+        ),
+        'words' => 
+        array (
+          'all' => 
+          array (
+            'value' => ' ',
+          ),
+          'apply_10' => 
+          array (
+            'value' => ' ',
+          ),
+          'apply_20' => 
+          array (
+            'value' => ' ',
+          ),
+          'apply_40' => 
+          array (
+            'value' => ' ',
+          ),
+          'apply_30' => 
+          array (
+            'value' => ' ',
+          ),
+        ),
+      ),
+      'withdraw_apply' => 
+      array (
+        'title' => 
+        array (
+          'value' => ' ',
+        ),
+        'words' => 
+        array (
+          'capital' => 
+          array (
+            'value' => ' ',
+          ),
+          'money' => 
+          array (
+            'value' => ' ',
+          ),
+          'money_placeholder' => 
+          array (
+            'value' => ' ',
+          ),
+          'min_money' => 
+          array (
+            'value' => ' ',
+          ),
+          'submit' => 
+          array (
+            'value' => ' ',
+          ),
+        ),
+      ),
+      'qrcode' => 
+      array (
+        'title' => 
+        array (
+          'value' => '',
+        ),
+      ),
+    ),
+    'template_msg' => 
+    array (
+      'apply_tpl' => ' ',
+      'withdraw_tpl' => ' ',
+    ),
+  ),
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[2019-04-24T16:11:44+08:00] 171.43.250.111 GET mf.iirr5.com/index.php?s=/user/setting/agent.html
+[运行时间：0.070862s] [吞吐率：14.11req/s] [内存消耗：5,447.84kb] [文件加载：92]
+[ info ] [ LANG ] /www/wwwroot/mf.iirr5.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://mf.iirr5.com/index.php?s=/user/setting/agent.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=mp4u9t4869rpvfur0e9a6g5460',
+  'host' => 'mf.iirr5.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /www/wwwroot/mf.iirr5.com/application/user/view/setting/agent.html [ array (
+  0 => 'base_url',
+  1 => 'store_url',
+  2 => 'group',
+  3 => 'url',
+  4 => 'menu',
+  5 => 'store',
+  6 => 'request',
+  7 => 'data',
+) ]
+---------------------------------------------------------------
+[2019-04-24T16:11:46+08:00] 171.43.250.111 POST mf.iirr5.com/index.php?s=/user/setting/agent.html
+[运行时间：0.066017s] [吞吐率：15.15req/s] [内存消耗：5,420.08kb] [文件加载：91]
+[ info ] [ LANG ] /www/wwwroot/mf.iirr5.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'https://mf.iirr5.com',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36',
+  'referer' => 'https://mf.iirr5.com/index.php?s=/user/setting/agent.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=mp4u9t4869rpvfur0e9a6g5460',
+  'host' => 'mf.iirr5.com',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'content-length' => '1828',
+)
+[ info ] [ PARAM ] array (
+  'setting' => 
+  array (
+    'basic' => 
+    array (
+      'is_open' => '2',
+      'level' => '2',
+    ),
+    'commission' => 
+    array (
+      'first_money' => '',
+      'second_money' => '',
+      'third_money' => '',
+    ),
+    'settlement' => 
+    array (
+      'min_money' => '',
+    ),
+    'words' => 
+    array (
+      'order' => 
+      array (
+        'title' => 
+        array (
+          'value' => '',
+        ),
+        'words' => 
+        array (
+          'all' => 
+          array (
+            'value' => '',
+          ),
+          'unsettled' => 
+          array (
+            'value' => '',
+          ),
+          'settled' => 
+          array (
+            'value' => '',
+          ),
+        ),
+      ),
+      'team' => 
+      array (
+        'title' => 
+        array (
+          'value' => '',
+        ),
+        'words' => 
+        array (
+          'total_team' => 
+          array (
+            'value' => ' ',
+          ),
+          'first' => 
+          array (
+            'value' => ' ',
+          ),
+          'second' => 
+          array (
+            'value' => ' ',
+          ),
+          'third' => 
+          array (
+            'value' => ' ',
+          ),
+        ),
+      ),
+      'withdraw_list' => 
+      array (
+        'title' => 
+        array (
+          'value' => '',
+        ),
+        'words' => 
+        array (
+          'all' => 
+          array (
+            'value' => ' ',
+          ),
+          'apply_10' => 
+          array (
+            'value' => ' ',
+          ),
+          'apply_20' => 
+          array (
+            'value' => ' ',
+          ),
+          'apply_40' => 
+          array (
+            'value' => ' ',
+          ),
+          'apply_30' => 
+          array (
+            'value' => ' ',
+          ),
+        ),
+      ),
+      'withdraw_apply' => 
+      array (
+        'title' => 
+        array (
+          'value' => '  ',
+        ),
+        'words' => 
+        array (
+          'capital' => 
+          array (
+            'value' => ' ',
+          ),
+          'money' => 
+          array (
+            'value' => ' ',
+          ),
+          'money_placeholder' => 
+          array (
+            'value' => ' ',
+          ),
+          'min_money' => 
+          array (
+            'value' => ' ',
+          ),
+          'submit' => 
+          array (
+            'value' => ' ',
+          ),
+        ),
+      ),
+      'qrcode' => 
+      array (
+        'title' => 
+        array (
+          'value' => '',
+        ),
+      ),
+    ),
+    'template_msg' => 
+    array (
+      'apply_tpl' => ' ',
+      'withdraw_tpl' => ' ',
+    ),
+  ),
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[2019-04-24T16:11:48+08:00] 171.43.250.111 GET mf.iirr5.com/index.php?s=/user/setting/agent.html
+[运行时间：0.057383s] [吞吐率：17.43req/s] [内存消耗：5,447.84kb] [文件加载：92]
+[ info ] [ LANG ] /www/wwwroot/mf.iirr5.com/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://mf.iirr5.com/index.php?s=/user/setting/agent.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=mp4u9t4869rpvfur0e9a6g5460',
+  'host' => 'mf.iirr5.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /www/wwwroot/mf.iirr5.com/application/user/view/setting/agent.html [ array (
+  0 => 'base_url',
+  1 => 'store_url',
+  2 => 'group',
+  3 => 'url',
+  4 => 'menu',
+  5 => 'store',
+  6 => 'request',
+  7 => 'data',
+) ]

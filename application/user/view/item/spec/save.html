@@ -1,0 +1,63 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<form id="my-form" class="layui-form" enctype="multipart/form-data" method="post">
+				<div class="widget-head">
+					<div class="widget-title">
+						商品规格
+					</div>
+				</div>
+			<div class="widget-body layui-col-lg12">
+					<div class="layui-form-item">
+						<label class="layui-form-label">规格名称 </label>
+						<div class="layui-col-sm7 layer-midd-left">
+							<input type="text" class="layui-input" name="spec[name]"  value="{$spec['name']??''}" required>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">所属商品类型： </label>
+						<div class="layui-col-sm7 layer-midd-left">
+							<select name="spec[type_id]" class="form-control"data-am-selected="{searchBox: 1, btnSize: 'sm'}">
+								<option value="0">请选择</option>
+								{if isset($type)}{foreach ($type as $first)}
+								<option {notempty name="$spec.type_id"}{if ($spec.type_id) eq ($first.id)} selected = "selected" {/if}{/notempty}value="{$first['id']??''}">{$first['name']}</option>
+								{/foreach}{/if}
+							  </select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">规格项 </label>
+						<div class="layui-col-sm7 layer-midd-left">
+							<textarea name='spec[items]' rows="6" class="layui-textarea">{$spec['items']??''}</textarea>
+							<small>一行为一个规格项</small>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">分类排序 </label>
+						<div class="layui-col-sm7 layer-midd-left">
+							<input type="number" class="layui-input" name="category[sort_order]" value="100" required>
+							<small>数字越小越靠前</small>
+						</div>
+					</div>
+				 <div>
+					 <input type="hidden" name="spec[id]" value="{$spec['id']??''}">
+				 </div>
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button type="submit" class="j-submit layui-btn ">提交
+							</button>
+						</div>
+					</div>
+			</div>
+			</form>
+        </div>
+    </div>
+</div>
+<script>
+    $(function ()
+    {
+        /**         * 表单验证提交
+         *  * @type {*}
+         *  */
+    $('#my-form').superForm();	})
+</script>

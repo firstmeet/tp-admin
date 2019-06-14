@@ -1,0 +1,59 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head">
+				<div class="widget-title">顶部导航设置</div>
+			</div>
+			<form id="my-form" class="layui-form"  enctype="multipart/form-data" method="post">
+				<div class="widget-body layui-col-sm12 layui-col-md12 layui-col-lg12">
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require ron-wide"> 小程序标题 </label>
+							<div class="layui-col-sm6 layer-midd-left">
+								<input type="text" class="layui-input" name="tabbar[app_title]"
+									   value="{$model['app_title']??''}">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require ron-wide">顶部导航文字颜色 </label>
+							<div class="layui-col-sm6 layer-midd-left">
+								<label class="layui-inline">
+									<input type="radio" name="tabbar[top_text_color]" value="10" data-am-ucheck
+										{$model['top_text_color']['value'] === 10 ? 'checked' : ''}> 黑色
+								</label>
+								<label class="layui-inline">
+									<input type="radio" name="tabbar[top_text_color]" value="20" data-am-ucheck
+										{$model['top_text_color']['value'] === 20 ? 'checked' : ''}> 白色
+								</label>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require ron-wide">顶部导航背景色 </label>
+							<div class="layui-col-sm6 layer-midd-left layer-padding-top-xs">
+								<input type="color" class="layui-input" name="tabbar[top_background_color]"
+									   value="{$model['top_background_color']??''}" required>
+							</div>
+						</div>
+
+					<input type="hidden" name="tabbar[app_id]" value="{$model['app_id']??''}">
+						<div class="layui-input-block">
+							<div class="layui-col-sm9 layui-col-smpush-3 layer-margin-top-lg">
+								<button type="submit" class="j-submit layui-btn ">提交
+								</button>
+							</div>
+						</div>
+				</div>
+			</form>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+
+        /**
+         * 表单验证提交
+         * @type {*}
+         */
+        $('#my-form').superForm();
+
+    });
+</script>

@@ -1,0 +1,91 @@
+<div class="row-content layer-cf">
+    <div class="row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="widget layui-col-md12 widget-bff">
+                <form id="my-form" class="layer-form tpl-form-line-form" action="{:url('System/store')}" enctype="multipart/form-data" method="post">
+                    <div class="widget-body">
+                        <fieldset>
+                            <div class="widget-head layer-cf">
+                                <div class="widget-title layer-fl">订单流程设置</div>
+                            </div>
+                            <div class="layer-form-group">
+                                <label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require">未支付订单 </label>
+                                <div class="layui-col-sm9 layer-input-group layer-u-end">
+                                    <div class="layui-col-sm7">
+                                        <input type="number" class="layer-form-field" name="close_days"
+                                               value="{$values['order']['close_days']}"
+                                               pattern="^(0|\+?[1-9][0-9]*)$" required>
+                                    </div>
+                                    <label class="layui-col-sm5 layer-form-label layer-text-left">天后自动关闭</label>
+                                    <div class="help-block layui-col-sm12">
+                                        <small>订单下单未付款，n天后自动关闭，设置0天不自动关闭</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layer-form-group">
+                                <label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require">已发货订单 </label>
+                                <div class="layui-col-sm9 layer-input-group layer-u-end">
+                                    <div class="layui-col-sm7">
+                                        <input type="number" class="layer-form-field" name="receive_days"
+                                               value="{$values['order']['receive_days']}"
+                                               pattern="^(0|\+?[1-9][0-9]*)$" required>
+                                    </div>
+                                    <label class="layui-col-sm5 layer-form-label layer-text-left">天后自动确认收货</label>
+                                    <div class="help-block layui-col-sm12">
+                                        <small>如果在期间未确认收货，系统自动完成收货，设置0天不自动收货</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-head layer-cf">
+                                <div class="widget-title layer-fl">运费设置</div>
+                            </div>
+                            <div class="layer-form-group">
+                                <label class="layui-col-sm3 layui-col-lg2 layer-form-label">运费组合策略 </label>
+                                <div class="layui-col-sm9 layer-u-end">
+                                    <div class="layui-col-sm12">
+                                        <label class="layer-radio">
+                                            <input type="radio" name="freight_rule" value="10" data-layer-ucheck
+                                                {$values['freight_rule'] === '10' ? 'checked' : ''} required> 叠加
+                                        </label>
+                                        <div class="help-block">
+                                            <small>订单中的商品有多个运费模板时，将每个商品的运费之和订为订单总运费</small>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm12 layer-margin-top-sm">
+                                        <label class="layer-radio">
+                                            <input type="radio" name="freight_rule" value="20" data-layer-ucheck
+                                                {$values['freight_rule'] === '20' ? 'checked' : ''} required>
+                                            以最低运费结算
+                                        </label>
+                                        <div class="help-block">
+                                            <small>订单中的商品有多个运费模板时，取订单中运费最少的商品的运费计为订单总运费</small>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm12 layer-margin-top-sm">
+                                        <label class="layer-radio">
+                                            <input type="radio" name="freight_rule" value="30" data-layer-ucheck
+                                                {$values['freight_rule'] === '30' ? 'checked' : ''} required>
+                                            以最高运费结算
+                                        </label>
+                                        <div class="help-block">
+                                            <small>订单中的商品有多个运费模板时，取订单中运费最多的商品的运费计为订单总运费</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="layer-form-group">
+                                <div class="layui-col-sm9 layui-col-smpush-3 layer-margin-top-lg">
+									<input type="hidden" name="inc_type" value="">
+                                    <button type="submit" class="j-submit layer-btn layer-btn-secondary">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

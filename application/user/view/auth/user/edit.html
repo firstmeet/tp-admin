@@ -1,0 +1,78 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head">
+				<div class="widget-title">{if isset($detail['user_id'])}编辑 {else/}新增{/if}管理员</div>
+			</div>
+			<form id="my-form" class="layui-form" method="post">
+				<div class="widget-body layui-col-lg12"> 
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">用户名 </label>
+						<div class="layui-col-sm6 layer-midd-left">
+							<input type="text" class="layui-input" name="user[user_name]"  value="{$detail['user_name']??''}" {if $detail['user_id']} readonly="readonly"  {/if} placeholder="子账号登录名为 主账号:子账号" required>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">所属角色  </label>
+						<div class="layui-col-sm6 layer-midd-left">
+							<select name="user[role_id]" >
+								{ if (isset($roleList))}
+								{volist name="roleList" id="role"}
+									<option  {if  $role['role_id']== $detail['role_id']}  selected {/if} value="{$role['role_id']}">{$role['role_name']}
+									   </option>
+								{/volist}
+								{/if}
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">登录密码 </label>
+						<div class="layui-col-sm6 layer-midd-left">
+							<input type="password" class="layui-input" name="user[password]" value="" placeholder="请输入登录密码">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">确认密码 </label>
+						<div class="layui-col-sm6 layer-midd-left">
+							<input type="password" class="layui-input" name="user[password_confirm]"  value="" placeholder="请输入确认密码">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">昵称 </label>
+						<div class="layui-col-sm6 layer-midd-left">
+							<input type="text" class="layui-input" name="user[real_name]"  value="{$detail['real_name']??''}" placeholder="请输入确认昵称">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">手机号 </label>
+						<div class="layui-col-sm6 layer-midd-left">
+							<input type="text" class="layui-input" name="user[phone]"  value="{$detail['phone']??''}" placeholder="请输入你的手机号">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">备注 </label>
+						<div class="layui-col-sm6 layer-midd-left">
+							<input type="text" class="layui-input" name="user[note]" value="{$detail['note']??''}" placeholder="">
+						</div>
+					</div>
+					<div>
+						<input type="hidden" name="user[user_id]" value="{$detail['user_id']??''}">
+					</div>
+					<div class="layui-form-item">
+						<button type="submit" class="j-submit layui-btn">提交</button>
+					</div>
+				</div>
+			</form>
+		</div>
+    </div>
+</div>
+<script>
+    $(function () {
+        /**
+         * 表单验证提交
+         * @type {*}
+         */
+        $('#my-form').superForm();
+
+    });
+</script>

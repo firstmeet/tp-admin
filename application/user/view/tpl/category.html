@@ -1,0 +1,89 @@
+<style>
+    .img__category_style {
+        width: 100%;
+        box-shadow: 0 3px 10px #dcdcdc;
+    }
+</style>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<form id="my-form" class="layui-form tpl-form-line-form"  method="post">
+				<div class="widget-head">
+					<div class="widget-title">分类页模板</div>
+				</div>
+				<div class="widget-body layui-col-sm12 layui-col-md12 layui-col-lg12">
+						<div class="wrapper layui-container">
+							<div class="left-style layui-col-sm12 layui-col-md12 layui-col-lg4">
+								<img class="img__category_style"
+									 src="assets/user/img/categoryTpl_{$model['category_style']}.png">
+							</div>
+							<div class="right-form layui-col-sm12 layui-col-md12 layui-col-lg7">
+								<div class="layui-form-item">
+									<label class="layui-form-label form-require"> 分类页样式 </label>
+									<div class="layui-col-sm10" style="margin-top:20px;">
+										<label class="layui-col-sm3">
+											<input type="radio" name="category[category_style]" value="10" {notempty name="$model['category_style']"}{$model['category_style'] == '10' ? 'checked' : '' } {/notempty}>一级分类 (大图)
+										</label>
+										<label class="layui-col-sm3">
+											<input type="radio" name="category[category_style]" value="11" {notempty name="$model['category_style']"}{$model['category_style'] == '11' ? 'checked': '' }{/notempty}>一级分类 (小图)
+										</label>
+										<label class="layui-col-sm2">
+											<input type="radio" name="category[category_style]" value="20" {notempty name="$model['category_style']"}{$model['category_style'] == '20' ? 'checked' : '' }{/notempty}>二级分类
+										</label>
+										<label class="layui-col-sm4">
+											<input type="radio" name="category[category_style]" value="30" {notempty name="$model['category_style']"}{$model['category_style'] == '30'  ? 'checked' : '' }{/notempty}>三级分类
+										</label>
+										<div class="help__style help-block layer-margin-top-xs">
+											<small class="{$model['category_style'] === 10 ? '' : 'hide'}" data-value="10">分类图尺寸：宽750像素 高度不限
+											</small>
+											<small class="{$model['category_style'] === 11 ? '' : 'hide' }"  data-value="11">分类图尺寸：宽188像素 高度不限
+											</small>
+											<small class="{$model['category_style'] === 20 ? '' : 'hide'}"  data-value="20">分类图尺寸：宽150像素 高150像素
+											</small>
+											 <small class="{$model['category_style'] === 30 ? '' : 'hide' }"  data-value="30">分类图尺寸：宽150像素 高150像素
+											</small>
+										</div>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label form-require"> 分享标题: </label>
+									<div class="layui-col-sm9">
+										<input type="text" class="layui-input" name="category[share_title]"
+											   value="{$model['share_title']}">
+									</div>
+								</div>
+								<div class="layui-input-block">
+									<div class="layui-col-sm9 layui-col-smpush-3">
+										<button type="submit" class="j-submit layui-btn ">提交
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
+			</form>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+
+        // 切换分类样式图
+        var $imgCategorystyle = $('.img__category_style');
+        var $helpStyleSmall = $('.help__style').find('small');
+		
+        $("input[name='category[category_style]']").click(function (e) {
+		
+            var styleValue = e.currentTarget.value;
+            $helpStyleSmall.hide().filter('[data-value=' + styleValue + ']').show();
+            $imgCategorystyle.attr('src', 'assets/user/img/categoryTpl_' + styleValue + '.png');
+        });
+
+        /**
+         * 表单验证提交
+         * @type {*}
+         */
+        $('#my-form').superForm();
+
+    });
+</script>

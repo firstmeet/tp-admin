@@ -1,0 +1,154 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>{}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="assets/user/i/favicon.ico"/>
+    <meta name="apple-mobile-web-app-title" content="{}"/>
+	<link rel="stylesheet" href="assets/layer/theme/default/layer.css"/>
+	<link rel="stylesheet" href="assets/user/css/wy_modality.css"/>
+	<script src="assets/user/js/jquery.min.js"></script>
+	<link rel="stylesheet" href="/assets/user/vendors/iconfonts/mdi/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" href="/assets/user/vendors/css/vendor.bundle.base.css"/>
+    <script>
+        BASE_URL = '{$base_url}';
+        STORE_URL = '/index.php?s=/user';
+    </script>
+</head>
+<body data-type="">
+<div class="row-content layer-cf">
+    <div class="row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="widget layer-cf ">
+                <div class="widget-head layer-cf">
+                    <div class="widget-title layer-cf">出售中的商品</div>
+                </div>
+                <div class="widget-body layer-fr">
+                    <!-- 工具栏 -->
+                    <div class="page_toolbar layer-margin-bottom-xs layer-cf">
+                        <form class="layui-form" action="">
+                            <input type="hidden" name="s" value="/{$request->pathinfo()}">
+                            <div class="layui-col-sm12 layui-col-md9">
+                                <div class="layer fr">
+									<div class="layer-form-group layer-fl">
+                                        <span style="display:none;">{$category_id = $request->get('category_id') ?: null}</span>
+                                        <select name="category_id"
+                                                data-layer-selected="{searchBox: 1, btnSize: 'sm',  placeholder: '商品分类', maxHeight: 400}">
+                                            <option value="">商品分类</option>
+                                          {if isset($catgory)}:
+											{foreach $catgory as $first}
+                                                <option value="{$first['id']}">
+                                                    {$first['name']}</option>
+                                            {/foreach}{/if}
+                                        </select>
+                                    </div>
+                                    <div class="layer-form-group layer-fl">
+                                      <span style="display:none;"> {$status = $request->get('status') ?: null}</span>
+                                        <select name="status"
+                                                data-layer-selected="{btnSize: 'sm', placeholder: '商品状态'}">
+                                            <option value=""></option>
+                                            <option value="10"
+                                                {$status == 10 ? 'selected' : ''}>上架
+                                            </option>
+                                            <option value="20"
+                                                {$status == 20 ? 'selected' : ''}>下架
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="layer-form-group layer-fl">
+                                        <div class="layer-input-group layer-input-group-sm tpl-form-border-form">
+                                            <input type="text" class="layer-form-field" name="name"
+                                                   placeholder="请输入商品名称"
+                                                   value="{$request->get('name')}">
+                                            <div class="layer-input-group-btn">
+                                                <button class="layer-btn layer-btn-default layer-icon-search"
+                                                        type="submit"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="layer-scrollable-horizontal layui-col-sm12">
+                        <table width="100%" class="layer-table layer-table-compact layer-table-striped
+                         tpl-table-black layer-text-nowrap">
+                            <thead>
+                            <tr>
+								<th><input type="checkbox" onclick="$('input[name*=\'item_id\']').prop('checked', this.checked);">全选</th>
+                                <th>商品名称</th>
+                                <th>价格</th>
+                                <th>库存</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="goos_table">
+                            {if !$list->isEmpty()}
+							  {foreach $list as $item}
+                                <tr>
+									 <td class="layer-text-middle">
+										 <input type="checkbox" name="prom[item_id][]" value="{$item.goods_id}"/>
+									 </td>
+                                    <td class="layer-text-middle">{$item['goods_name']}</td>
+                                    <td class="layer-text-middle">
+                                        <p class="item-title">{$item.sku[0]['shop_price']}</p>
+                                    </td>
+                                    <td class="layer-text-middle">{$item['store_count']}</td>
+                                    <td class="layer-text-middle"><a href="javascript:void(0)" onclick="javascript:$(this).parent().parent().remove();">删除</a></td>
+                                </tr>
+								{/foreach}{else/}
+                                <tr>
+                                    <td colspan="9" class="layer-text-center">暂无记录</td>
+                                </tr>
+                            {/if}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="layui-col-lg12 layer-cf">
+                        <div class="layer-fr">{$list|raw} </div>
+                        <div class="layer-fr pagination-total layer-margin-right">
+                            <div class="layer-vertical-align-middle">总记录：{$list->total()}</div>
+                        </div>
+                    </div>
+					  <div class="layer-form-group">
+                                <div class="layui-col-sm9 layui-col-smpush-3 layer-margin-top-lg">
+                                    <button type="submit" onclick="select_goods();" class="j-submits layer-btn layer-btn-secondary">确定
+                                    </button>
+                                </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+  <script>
+  function select_goods()
+  {	  
+	   if($("input[type='checkbox']:checked").length == 0)
+	   {
+		   layer.alert('请选择商品', {icon: 2});
+		   return false;
+	   }
+	  	//将没选中的复选框所在的  tr  remove  然后删除复选框
+	    $("input[type='checkbox']").each(function(){
+		   if($(this).is(':checked') == false)
+		   {
+			    $(this).parent().parent().remove();
+			    //$("#goods_list", window.parent.document).append("<tr>"+$(this).html()+'<td><a href="javascript:;" class="icon-close" onclick="goods_del(this)"></a></td></tr>');
+		   }else{
+			   $(this).parent().css('display','none');
+			   $(this).attr("checked","checked");
+		   }
+		   //$(this).siblings().show();
+	    });
+		$(".btn-info").remove();	
+        javascript:window.parent.call_back($('#goos_table').html());
+  }    
+  </script>

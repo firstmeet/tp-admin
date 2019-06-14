@@ -1,0 +1,272 @@
+.membercardbox{
+	display:flex;
+	border:1px solid #ddd;
+	box-sizing:border-box;
+	/*20180704 bug*/
+	float: left;
+}
+.leftpart{
+	/* border-right:1px solid #ddd; */
+	min-width: 400px;
+	padding:30px;
+	/*20180704 bug*/
+	width: 25%;
+	float: left;
+}
+.onecard{
+	width: 100%;
+	height:190px;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.onecard b,.onecard em,.onecard i,.onecard s{
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+}
+.onecard a{
+	color:#fff;
+}
+.cardbigtop{
+	height: 160px;
+	width: 100%;
+	display: inline-block;	
+}
+.redbg .cardbigtop{
+	background: #fa6869;
+}
+.yellowbg .cardbigtop{
+	background: #d0b63f;
+}
+.blackbg .cardbigtop{
+	background: #54514e;
+}
+.cardbigtop p{
+	width: 100%;
+    height: 130px;
+    box-sizing:border-box;
+    display:inline-block;
+    padding:20px;
+}
+.cardbigtop p span{
+	line-height: 20px;
+}
+.cardbigtop p em{
+	float: right;
+	font-size:10px;
+}
+.cardbigtop p span i{
+	width: 20px;
+	height:20px;
+	display: inline-block;
+	float: left;
+/* 	background: url('../images/icons/icon01.png') no-repeat; */
+}
+.cardbigtop p span b{
+	float: left;
+	margin-left:5px;
+}
+.cardbigtop h4{
+	width: 100%;
+	height:30px;
+	line-height: 30px;
+	display:inline-block;
+	background: rgba(0,0,0,.6);
+	text-align: center;
+	font-size: 12px;
+}
+.onecard h5{
+	background: #e5e5e5;
+	color:#999;
+	height: 30px;
+	line-height: 30px;
+	box-sizing:border-box;
+	padding:0 20px;
+}
+.onecard h5 b{
+	font-size: 12px;
+	color:#857f7e;
+}
+.onecard h5 s{
+	font-size:12px;
+	color:#19af2a;
+	float: right;
+}
+.rightpart{
+	padding:30px 15px;
+	/*20180704 bug*/
+	width: 75%;
+	float: right;
+	border-left: 1px solid #ddd;
+}
+
+.labelname{
+	line-height: 30px;
+	text-align: right;
+	font-size: 16px;
+	color:#777;
+}
+.editbox{
+	margin-top:10px;
+}
+.onelistpice{
+	position: relative;
+	font-size: 14px;
+	color:#454343;
+	line-height: 30px;
+	margin-top:10px;
+	cursor:pointer;
+}
+.onelistpice b{
+	font-weight: normal;
+}
+.onelistpice:before{
+	content:'';
+	width: 10px;
+	height: 10px;
+	margin-right: 5px;
+	margin-left:5px;
+	display: inline-block;
+	border-radius: 100%;
+	background: #e5e5e5;
+}
+.onelistpice i{
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	float: right;
+	margin-top:5px;
+	margin-right: 5px;
+	background: green;
+	display:none;
+	background: #fa6869;
+	color:#fff;
+	font-size: 16px;
+	line-height: 16px;
+	text-align: left;
+	text-indent:5px;
+	border-radius: 100%;
+}
+.onelistpice:hover{
+	background: #eee;
+	color:#fa6869;
+}
+.onelistpice:hover:before{
+	background: #fa6869;
+}
+.onelistpice:hover i{
+	display: inline-block;
+}
+.addtype{
+	width: 20px;
+	height: 20px;
+	padding:0;
+	display: block;
+	border:1px dashed #c3c3c3;
+	background: #fff;
+	font-size: 16px;
+	line-height: 16px;
+	color:3c3c3c3;
+	text-align: center;
+	cursor:pointer;
+}
+.addtype:hover{
+	color:#fa6869;
+	border-color:#fa6869;
+}
+.onelineform{
+	display: flex;
+}
+.onelineform input{
+	float: left;
+}
+
+.onelineform button{
+	float: left;
+	margin-left: 10px;
+}
+
+
+.data-content-tab{
+	width:100%;
+	box-sizing:border-box;
+}
+.levelred{
+	color:#fa6869;
+}
+.levelyellow{
+	color:#cfba0c;
+}
+.levelgreen{
+	color:#27af3b;
+}
+.evaluation-table a:hover{
+	color:#fa6869;
+	opacity: 0.8;
+}
+.formtable{
+	padding:10px;
+}
+.formtable label{
+	width: 110px;
+	text-align: right;
+}
+.selectspan span{
+	position: relative;
+	width: 90px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	display:inline-block;
+	border:1px solid #ddd;
+	border-radius: 5px;
+	background: #fff;
+	margin-right: 10px;
+	cursor:pointer;
+}
+.selectspan span:after{
+	position:absolute;
+	bottom:-1px;
+	right: -1px;
+	z-index: 9;
+	content: '';
+	width: 21px;
+	height: 16px;
+	background: url('../images/members-list.png') no-repeat;
+	display:none;
+}
+.selectspan span:hover,.selectspan span.hover{
+	border-color:#fa6869;
+}
+.selectspan span:hover:after,.selectspan span.hover:after{
+	display:block;
+} 
+.smalltable table{
+	width: 100%;
+	font-size: 14px;
+	line-height: 40px;
+	text-align: center;
+}
+.smalltable table th{
+	background: #eee;
+	font-weight: normal;
+	text-align: center;
+}
+.smalltable table tr{
+	border-bottom:1px solid #eee;
+}
+.formtable p input, .formtable p select{
+	width: 300px;
+}
+.formtable3{
+	padding:40px;
+}
+.memberlist .btn-default{
+	width: 66.16px;
+}
+.mldefault{
+	margin-left:-5px;
+}
+.sellectbox{vertical-align: middle}

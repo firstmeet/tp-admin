@@ -1,0 +1,207 @@
+/*common css*/
+
+.sign_bg{
+	position: absolute;
+	left:0;
+	top:0;
+	width: 100%;
+	height: 100%;
+	background:rgba(0,0,0,0.6);
+	z-index:999;
+}
+.sign_tk{
+	position: fixed;
+	left: 50%;
+	top:50%;
+	width: 12rem;
+	height:10rem;
+	margin-left: -6rem;
+	margin-top: -6rem; 
+	background: #fff;
+	-webkit-border-radius: 0.6rem;
+	-moz-border-radius: 0.6rem;
+	-ms-border-radius: 0.6rem;
+	-o-border-radius: 0.6rem;
+	border-radius: 0.6rem;
+	z-index:1000;
+}
+.sign_suc{
+	width: 100%;
+	position: relative;
+	padding-top:2rem;
+}
+.suc_title{
+	width: 130%;
+	height: 3.8rem;
+	background: url(../images/suc_title.png) no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+	left: -15%;
+	top:-2rem;
+}
+.sign_con{
+	width: 10rem;
+	margin:0 auto;
+	text-align: center;
+	font-size:1.1rem;
+	line-height: 2rem;
+	padding:1.5rem 0 2rem 0;
+}
+.sign_con p{
+	letter-spacing:0.2rem;
+}
+.sign_close{
+	position: absolute;
+	width: 1.4rem;
+	height: 1.4rem;
+	left:50%;
+	bottom:-4rem;
+	margin-left: -0.7rem;
+	background: url(../images/close.png) no-repeat;
+	background-size: 100% 100%;
+	padding:0.1rem;
+	box-sizing: border-box;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-ms-transition: 0.5s;
+	transition: 0.5s;
+}
+.sign_close:hover{
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	transform: rotate(360deg);
+}
+.unsuc_title{
+	width: 100%;
+	height: 2.6rem;
+	background: #ead190;
+	line-height: 2.6rem;
+	text-align: center;
+	color: #fff;
+	font-size: 1.2rem;
+	-webkit-border-radius: 0.4rem 0.4rem 0 0;
+	-moz-border-radius: 0.4rem 0.4rem 0 0;
+	-ms-border-radius: 0.4rem 0.4rem 0 0;
+	border-radius: 0.4rem 0.4rem 0 0;
+	position: absolute;
+	left: 0;
+	top:0;
+}
+.stepPage{
+  /* display:none; */
+  height:100%;
+  width:44px;
+}
+.stepCont{
+  width:100%;
+}
+.ystep-container {
+  font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Wenquanyi Micro Hei","Microsoft Yahei",Arial,sans-serif;
+  display: inline-block;
+  position: relative;
+  color: #000;
+
+  margin: 20px;
+}
+.ystep-container ul {
+  list-style: none;
+}
+.ystep-container ul,.ystep-container li,.ystep-container p {
+  margin: 0;
+  padding: 0;
+}
+
+/*size css*/
+.ystep-lg {
+  width:100%;
+  height: 40px;
+  font-size: 12px;
+  line-height: .3;
+}
+
+/*large size css*/
+.ystep-lg .ystep-container-steps {
+  position: absolute;
+  top: 2px;
+  cursor: pointer;
+  z-index: 10;
+}
+.ystep-lg li {
+  float: left;
+  width: 40px;
+  height: 85px;
+  margin-right: 4px;
+}
+.ystep-lg .ystep-progress {
+  width: auto;
+  height: 5px;
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  float: left;
+  margin-right: 10px;
+  overflow: hidden;
+}
+.ystep-lg .ystep-progress-bar {
+  width: auto;
+  height: 20px;
+  background: #e4e4e4;
+  display: inline-block;
+  float: left;
+}
+.ystep-lg .ystep-progress-highlight {
+  height: 20px;
+	display: block;
+}
+
+/*blue css*/
+.ystep-blue .ystep-step-done {
+  content:'';
+  position:absolute;
+  width:9px;
+  height:9px;
+  top:25px;
+  color: #ff5060;
+  border-radius:100%;
+  margin-left:-15px;
+}
+.ystep-lg .ystep-step-active .ystep-step-done {
+	left:29px;
+}
+.ystep-step-active:after{
+  content:'';
+  position:absolute;
+  width:9px;
+  height:9px;
+  top:25px;
+  color: #ff5060;
+  border-radius:100%;
+	
+	
+}
+.ystep-step-undone:after {
+  content:'';
+  position:absolute;
+  width:9px;
+  height:9px;
+  top:25px;
+  color: #ff5060;
+  border-radius:100%;
+	
+}
+.ystep-blue .ystep-progress-highlight {
+  /* background: #fa6869; */
+}
+/*按钮样式*/
+.ystep {
+  padding: 20px;
+  /*min-width: 1114px;*/
+}
+.step-button{
+  position: relative;
+  /*top: -85px;*/
+}
+.step-button button{
+  margin: 15px;
+}

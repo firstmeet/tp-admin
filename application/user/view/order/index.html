@@ -1,0 +1,160 @@
+<div class="layui-container">
+    <div class="layui-row">
+		<div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head">
+				<div class="widget-title layui-cf">{$title}</div>
+			</div>
+			<div class="layui-col-md12 layui-col-xs12 widget-body">
+					<!-- 工具栏 -->
+				<div class="page_toolbar">
+					<form id="form-search" class="layui-form" method="post" action="">
+						<input type="hidden" name="s" value="/{$request->pathinfo()}">
+						<input type="hidden" name="dataType" value="{$dataType}">
+						<div class="layui-col-sm12 layui-col-md12 ">
+									<div class="layui-col-md3">
+										<label class="layui-form-label">订单号：</label>
+										<div class="layui-input-block">
+											<input type="text" class="layui-input" name="order_no"placeholder="请输入订单号"  value="{$request->get('order_no')}">
+										</div>
+									</div>							
+									<div class="layui-col-md2 laui-col-width">
+										<button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+									</div>
+								<div class="layui-col-md3">
+									<a class="j-export layui-btn "
+									   href="javascript:void(0);">
+										<i class="mdi menu-icon mdi-logout"></i>订单导出
+									</a>
+									{if $dataType heq 'delivery'}
+										<a class="j-export layui-btn "
+										   href="{:url('order/give')}">
+											<i class="mdi menu-icon mdi-export"></i>批量发货
+										</a>
+									{/if}
+								</div>
+						</div>
+					</form>
+				</div>	 
+
+				<div class="layui-col-md12" >
+					<table width="100%" class="layui-table">
+						<thead>
+						<tr>
+							<th width="30%" class="goods-detail">商品信息</th>
+							<th width="10%">单价/数量</th>
+							<th width="15%">实付款</th>
+							<th>买家</th>
+							<th>交易状态</th>
+							<th>操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						{if (!$list->isEmpty())}{foreach $list as $order}
+							<tr> 
+								<td class="layui-text-middle layui-text-left" colspan="6" style="border-bottom:none;">
+									<span class="layui-margin-right-lg"> {$order['create_time']}</span>
+									<span class="layui-margin-right-lg">订单号：{$order['order_no']}</span>
+								</td>
+						   </tr>
+						  
+							{foreach $order['goods'] as $i=>$goods}
+								<tr>
+									<td class="goods-detail layui-text-middle">
+										<div class="goods-image">
+											<img src="{$goods['image']}" alt="">
+										</div>
+										<div class="goods-info">
+											<p class="goods-title">{$goods['name']}</p>
+											<p class="goods-spec layui-link-muted">
+												{$goods['goods_attr']}
+											</p>
+										</div>
+									</td>
+									<td class="layui-text-middle">
+										<p>￥{$goods['goods_price']}</p>
+										<p>×{$goods['total_num']}</p>
+									</td>
+									
+									{if ($i == 0 )}
+									
+										<td class="layui-text-middle" rowspan="{count($order['goods'])}">
+											<p>￥{$order['pay_price']}</p>
+											<p class="layui-link-muted">(含运费：￥{$order['express_price']})</p>
+										</td>
+										<td class="layui-text-middle" rowspan="{count($order['goods'])}">
+											<p>{$order['user']['nickName']}</p>
+											<p class="layui-link-muted">(用户id：{$order['user']['user_id']})</p>
+										</td>
+										<td class="layui-text-middle" rowspan="{count($order['goods'])}">
+											<p>付款状态：
+												<span class="layui-badge
+											{$order['pay_status']['value'] === 20 ? 'layui-badge-success' : ''}">
+													{$order['pay_status']['text']}</span>
+											</p>
+											<p>发货状态：
+												<span class="layui-badge
+											{$order['delivery_status']['value'] === 20 ? 'layui-badge-success' : ''}">
+													{$order['delivery_status']['text']}</span>
+											</p>
+											<p>收货状态：
+												<span class="layui-badge
+											{$order['receipt_status']['value'] === 20 ? 'layui-badge-success' : ''}">
+													{$order['receipt_status']['text']}</span>
+											</p>
+										</td>
+										<td class="layui-text-middle" rowspan="{count($order['goods'])}" style="width:11%">
+											<div class="tpl-table-black-operation">
+												<a class="tpl-table-black-operation-green"
+												   href="{:url('order/detail', ['order_id' => $order['order_id']])}">
+													订单详情</a>
+												{if ($order['pay_status']['value'] === 20
+													&& $order['delivery_status']['value'] === 10)}
+													<a class="tpl-table-black-operation"
+													   href="{:url('order/detail#delivery',
+														   ['order_id' => $order['order_id']])}">
+														去发货</a>
+												{/if}
+											</div>
+										</td>
+									{/if}
+								</tr>
+							{/foreach}
+						{/foreach} {else/}
+							<tr>
+								<td colspan="12" class="layer-text-center">暂无记录</td>
+							</tr>
+						{/if}
+						</tbody>
+					</table>
+				</div>
+				<div class="layui-col-lg12 layui-cf">
+					<div class="layui-fr">{$list|raw} </div>
+					<div class="layui-fr pagination-total layui-margin-right">
+						<div class="layui-vertical-align-middle">总记录：{$list->total()}</div>
+					</div>
+				</div>
+			</div>	
+	    </div>
+    </div>
+</div>
+<script>
+
+    $(function () {
+
+        /**
+         * 订单导出
+         */
+        $('.j-export').click(function () {
+	
+            var data = {};
+            var formData = $('#form-search').serializeArray();
+            $.each(formData, function () {
+                this.name !== 's' && (data[this.name] = this.value);
+            });
+            window.location = "{:url('operate/export')}" + '&' + $.urlEncode(data);
+        });
+
+    });
+
+</script>
+

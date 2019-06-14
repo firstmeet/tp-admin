@@ -1,0 +1,135 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head">
+				<div class="widget-title">出售中的商品</div>
+			</div>
+			<div class="layui-col-md12 layui-col-xs12 widget-body ">	
+				<div class="layui-form-item">
+					<form class="layui-form" method="post" action="">
+						<input type="hidden" name="s" value="/{$request->pathinfo()}">
+						<div class="layui-col-sm12 layui-col-md12">
+							<div class="layui">
+								<div class="layui-col-md3">
+									<label class="layui-form-label">商品名称：</label>
+									<div class="layui-col-md6 ">
+										<input type="text" class="layui-input" name="name" placeholder="请输入商品名称" value="{$request->get('name')}">
+									</div>
+								</div>
+								<div class="layui-col-md4 layui-col-flex">
+									<label class="layui-form-label">商品分类：</label>
+									<span style="display:none;">{$category_id = $request->get('category_id') ?: null}</span>
+									<select class="form-control" name="category_id" data-layer-selected="{searchBox: 1, btnSize: 'sm',  placeholder: '商品分类', maxHeight: 400}">
+										<option value="">全部分类</option>
+									  {if isset($catgory)}:
+										{foreach $catgory as $first}
+											<option value="{$first['id']}">{$first['name']}</option>
+										{/foreach}
+									{/if}
+									</select>
+								</div>
+								<div class="layui-col-md2">
+									<button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+								</div>
+							</div>
+						</div>
+						<div class="layui-col-sm12 layui-col-md12">
+							<div class="layui-col-md12 layer-midd-left gr-top">
+								<div class="layui-form-item3">
+									<div class="layui-col-md1">
+										<a class="layui-btn"  href="{:url('item/edit')}"> <i class="mdi menu-icon mdi-plus"></i>新增</a>
+									</div>
+									<div class="layui-col-md1">
+										<a class="layui-btn"
+										   href="{:url('item/index',['status'=>1])}">
+											<i class="layui-icon"></i>上架
+										</a>
+									</div>
+									<div class="layui-col-md1">
+										<a class="layui-btn"
+										   href="{:url('item/index',['status'=>2])}">
+											<i class="layui-icon"></i> 下架
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<div class="layui-col-md12" >
+					<table width="100%" class="layui-table">
+						<thead>
+						<tr>
+							<th>商品ID</th>
+							<th width="20%">商品名称</th>
+							<th>分类</th>
+							<th>价格</th>
+							<th>库存</th>
+							<th>上架</th>
+							<th>添加时间</th>
+							<th>操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						{if !$list->isEmpty()}{foreach $list as $item}
+							<tr>
+								<td>{$item['goods_id']}</td>
+								<td>
+									 <p class="item-title">{$item['goods_name']}</p>
+								</td>
+								<td>
+								{$item['category']['name']}
+								</td>
+
+								<td>{notempty name="$item['sku']"}{$item['sku'][0]['shop_price']}{/notempty}</td>
+								<td>{notempty name="$item['sku']"}{$item['sku'][0]['store_count']}{/notempty}</td>
+								<td	style="width:10%">
+									   <span class="j-state layui-badge x-cur-p layer-badge-{$item['is_on_sale'] == 1 ? 'success'  : 'warning'}" data-id="{$item['goods_id']}">{if condition="$item.is_on_sale eq 1"}上架{else/}下架{/if}</span>
+								</td>
+								<td>{$item['create_time']}</td>
+								<td>
+									<div class="tpl-table-black-operation">
+										<a class="tpl-table-black-operation-primary" href="{:url('item/comment',
+											['goods_id' => $item['goods_id']])}">
+											<i class="mdi menu-icon mdi-grease-pencil"></i> 评价
+										</a>
+										<a href="{:url('item/edit',
+											['goods_id' => $item['goods_id']])}">
+											<i class="mdi menu-icon mdi-pencil"></i> 编辑
+										</a>
+										<a href="javascript:;" class="item-delete tpl-table-black-operation-del"
+										   data-id="{$item['goods_id']}">
+											<i class="mdi menu-icon mdi-delete-forever"></i> 删除
+										</a>
+									</div>
+								</td>
+							</tr>
+							{/foreach}{else/}
+							<tr>
+								<td colspan="12" class="layer-text-center">暂无记录</td>
+							</tr>
+						{/if}
+						</tbody>
+					</table>
+				</div>
+				<div class="layui-col-lg12">
+					<div class="layui-fr">{$list|raw}</div>
+					<div class="layui-fr pagination-total layer-margin-right">
+						<div class="layer-vertical-align-middle">总记录：{$list->total()}</div>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+		 $('.j-state')._get('goods_id', "{:url('item/state')}",'');
+        // 删除元素
+        $('.item-delete').delete('id', "{:url('item/delete')}",'','Item');
+
+    });
+	 
+</script>
+

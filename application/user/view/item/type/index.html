@@ -1,0 +1,172 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md12 layui-col-xs12">
+			<div class="widget-head">
+				<div class="widget-title">商品类型列表</div>
+			</div>
+			<div class="layui-col-md12 layui-col-xs12 widget-body">
+				<div class="layui-col-sm12 layui-col-md6 layui-col-lg6">
+					<div class="layui-form-item">
+						<div class="layui-btn-item layui-btn-item-xs">
+							<div class="layui-col-md3">
+								<a class="layui-btn"
+								   href="{:url('item/saveType')}">
+									<i class="layui-icon"></i> 新增商品类型
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md12">
+					<table width="100%" class="layui-table">
+						<thead>
+						<tr>
+							<th>编号</th>
+							<th>类型名称</th>
+							<th>添加时间</th>
+							<th>操作</th>
+						</tr>
+						</thead>
+						<tbody id="list-table">
+						{if !$list->isEmpty()}
+							{foreach $list as $vo}
+							  <tr>
+								<td>{$vo['id']}</td>
+								<td>{$vo['name']}</td>
+								<td>{$vo['create_time']}</td>
+								<td class="layer-text-middle">
+									<div class="tpl-table-black-operation">
+										<a href="{:url('item/saveType',
+											['id' => $vo['id']])}">
+											<i class="mdi menu-icon mdi-grease-pencil"></i> 编辑
+										</a>
+										<a href="javascript:;" class="item-delete tpl-table-black-operation-del"
+										   data-id="{$vo['id']}">
+											<i class="mdi menu-icon mdi-delete-forever"></i> 删除
+										</a>
+									</div>
+								</td>
+							 </tr>
+							{/foreach}
+						{else/}
+							<tr>
+								<td colspan="11" class="layer-text-center">暂无记录</td>
+							</tr>
+					   {/if}
+						</tbody>
+					</table>
+				</div>
+				<div class="layui-col-md12 layui-col-xs12">
+						<div class="layui-fr">{$page|raw} </div>
+						<div class="pagination-total">
+							<div class="">总记录：{$list->total()}</div>
+						</div>
+						
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        // 删除元素
+        var url = "<?= url('item/delete') ?>";
+        $('.item-delete').delete('id', url,'','Type');
+
+    });
+</script>
+<script type="text/javascript">
+
+// 展开收缩
+function  tree_open()
+{
+	 var tree = $('#list-table tr[id^="2_"], #list-table tr[id^="3_"] '); //,'table-row'
+	 if(tree.css('display')  == 'table-row')
+	 {
+		tree.css('display','none');
+		$("span[id^='icon_']").removeClass('glyphicon-minus');
+		$("span[id^='icon_']").addClass('glyphicon-plus');		
+	 }else
+	 {
+		tree.css('display','table-row');
+		$("span[id^='icon_']").addClass('glyphicon-minus');
+		$("span[id^='icon_']").removeClass('glyphicon-plus');				
+	 }
+}
+    
+// 以下是 bootstrap 自带的  js
+function rowClicked(obj)
+{
+  span = obj;
+
+  obj = obj.parentNode.parentNode;
+  
+  var tbl = document.getElementById("list-table");
+
+  var lvl = parseInt(obj.className);
+
+  var fnd = false;
+  
+  var sub_display = $(span).hasClass('glyphicon-minus') ? 'none' : '' ? 'block' : 'table-row' ;
+  //console.log(sub_display);
+  if(sub_display == 'none'){
+	  $(span).removeClass('glyphicon-minus btn-info');
+	  $(span).addClass('glyphicon-plus btn-warning');
+  }else{
+	  $(span).removeClass('glyphicon-plus btn-info');
+	  $(span).addClass('glyphicon-minus btn-warning');
+  }
+
+  for (i = 0; i < tbl.rows.length; i++)
+  {
+      var row = tbl.rows[i];
+      
+      if (row == obj)
+      {
+          fnd = true;         
+      }
+      else
+      {
+          if (fnd == true)
+          {
+              var cur = parseInt(row.className);
+              var icon = 'icon_' + row.id;
+              if (cur > lvl)
+              {
+                  row.style.display = sub_display;
+                  if (sub_display != 'none')
+                  {
+                      var iconimg = document.getElementById(icon);
+                      $(iconimg).removeClass('glyphicon-plus btn-info');
+                      $(iconimg).addClass('glyphicon-minus btn-warning');
+                  }else{               	    
+                      $(iconimg).removeClass('glyphicon-minus btn-info');
+                      $(iconimg).addClass('glyphicon-plus btn-warning');
+                  }
+              }
+              else
+              {
+                  fnd = false;
+                  break;
+              }
+          }
+      }
+  }
+  for (i = 0; i < obj.cells[0].childNodes.length; i++)
+  {
+      var imgObj = obj.cells[0].childNodes[i];
+      if (imgObj.tagName == "IMG")
+      {
+          if($(imgObj).hasClass('glyphicon-plus btn-info')){
+        	  $(imgObj).removeClass('glyphicon-plus btn-info');
+        	  $(imgObj).addClass('glyphicon-minus btn-warning');
+          }else{
+        	  $(imgObj).removeClass('glyphicon-minus btn-warning');
+        	  $(imgObj).addClass('glyphicon-plus btn-info');
+          }
+      }
+  }
+
+}
+</script>
+

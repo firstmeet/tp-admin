@@ -1,0 +1,240 @@
+<link rel="stylesheet" href="assets/user/css/swiper.min.css">
+<div class="page-home row-content layer-cf">
+
+    <!-- 商城统计 -->
+    <div class="row">
+        <div class="layui-col-md12 layui-col-xs12">
+            <div class="widget layui-col-md12 widget-bff">
+                <div class="widget-head">
+                    <div class="widget-title">商城统计</div>
+                </div>
+                <div class="widget-body layer-cf ">
+                    <div class="layui-col-sm12 layui-col-md6 layui-col-lg3 lay-rouw ">
+                 
+						<div class="stat-number">
+							<div class="volume vol-blue-left">
+								<p>商品总量</p>
+								<h3>{$data['widget-card']['goods_total']}</h3>
+							</div>
+							<div class="icon-volume vol-blue-right">
+								<span class="mdi menu-icon mdi-gift"></span>
+							</div>
+						</div>
+                    </div>
+
+                    <div class="layui-col-sm12 layui-col-md6 layui-col-lg3 lay-rouw ">
+                     
+						<div class="stat-number">
+							<div class="volume vol-purple-left">
+								<p>用户总量</p>
+								<h3>{$data['widget-card']['user_total']}</h3>
+							</div>
+							<div class="icon-volume vol-purple-right">
+                                <span class="mdi menu-icon mdi-account"></span>
+							</div>
+						</div>
+                    </div>
+
+                    <div class="layui-col-sm12 layui-col-md6 layui-col-lg3 lay-rouw ">
+                     
+						<div class="stat-number">
+							<div class="volume vol-green-left">
+								<p>订单总量</p>
+								<h3>{$data['widget-card']['order_total']}</h3>
+							</div>
+							<div class="icon-volume vol-green-right">
+									<span class="mdi menu-icon mdi-clipboard-text"></span>
+							</div>
+						</div>
+                    </div>
+
+                    <div class="layui-col-sm12 layui-col-md6 layui-col-lg3 lay-rouw ">
+                   
+						<div class="stat-number">
+							<div class="volume vol-yellow-left">
+								<p>评价总量</p>
+								<h3>{$data['widget-card']['comment_total']}</h3>
+							</div>
+							<div class="icon-volume vol-yellow-right">
+									<span class="mdi menu-icon mdi-star-half"></span>
+							</div>
+						</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 实时概况 -->
+    <div class="row">
+		<div class="layui-col-sm9">
+			<div class="layui-col-md12 layui-col-xs12" style="padding:0;">
+				<div class="widget layer-cf  widget-bff">
+					<div class="widget-head">
+						<div class="widget-title">实时概况</div>
+					</div>
+					<div class="widget-body layer-cf">
+						
+						
+						<div class="widget-body">
+							<div class="layui-col-sm2 ce-content ce-contents" >
+								<img src="assets/user/img/no-img.png">
+							</div>
+							<div class="layui-col-sm6 ce-content">
+								<p><strong>admin[管理员]</strong></p>
+								<p><span>登陆时间：</span></p>
+								<p><span>登陆IP：</span></p>
+							</div>
+							<div class="layui-col-sm4 ce-right ce-content">
+								<p>当前模式：[ 单店模式 ]</p>
+								<p>商务专员：[ <span>陈经理</span> ]</p>
+								<p>联系方式：[ <span>QQ676590030</span> ]</p>							
+							</div>
+						</div>
+						<div class="in-da-list">
+							<div class="layui-in-list-1">
+								<strong>{$data['widget-outline']['order_total_price']['tday']}</strong>
+								<p>销售额</p>
+							</div>
+							<div class="layui-in-list-1">
+								<strong>{$data['widget-outline']['order_total_price']['ytd']}</strong>
+								<p>昨日销售额</p>
+							</div>
+							<div class="layui-in-list-1">
+								<strong>{$data['widget-outline']['order_total']['tday']}</strong>
+								<p>支付订单数</p>
+							</div>
+							<div class="layui-in-list-1">
+								<strong>{$data['widget-outline']['order_total']['ytd']}</strong>
+								<p>昨日支付订单数</p>
+							</div>
+							<div class="layui-in-list-1">
+								<strong>{$data['widget-outline']['new_user_total']['tday']}</strong>
+								<p>新增用户数</p>
+							</div>
+							<div class="layui-in-list-1">
+								<strong>{$data['widget-outline']['new_user_total']['ytd']}</strong>
+								<p>昨日新增用户数</p>
+							</div>
+							<div class="layui-in-list-1">
+								<strong>{$data['widget-outline']['order_user_total']['tday']}</strong>
+								<p>下单用户数</p>
+							</div>
+							<div class="layui-in-list-1">
+								<strong>{$data['widget-outline']['order_user_total']['ytd']}</strong>
+								<p>昨日下单用户数</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<!-- 近七日交易走势 -->
+			<div class="layui-col-md12 layui-col-xs12" style="padding:0;">
+				<div class="widget layer-cf  widget-bff">
+					<div class="widget-head">
+						<div class="widget-title">近七日交易走势</div>
+					</div>
+					<div class="widget-body layer-cf">
+						<div id="echarts-trade" class="widget-echarts"></div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md12 layui-col-xs12" style="padding:0;">
+				<div class="widget layer-cf  widget-bff">
+					<div class="widget-head">
+						<div class="widget-title">近七日交易走势</div>
+					</div>
+					<div class="recommend">
+						<div><p class="ly-green">会员营销</p></div>
+						<div><p class="ly-CadetBlue">优惠券营销</p></div>
+						<div><p class="ly-MediumOrchid">店内扫码</p></div>
+						<div><p class="ly-MediumPurple">角色管理</p></div>
+						<div><p class="ly-Orchid">店铺装修</p></div>
+						<div><p class="ly-LightGoldenrod">订单调度</p></div>
+						<div><p class="ly-PeachPuff">数据分析</p></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="layui-col-sm3 " style="padding:0; padding-right:1.5rem">
+			<div class="widget layer-cf  widget-bff" style="padding:0;">			
+				<div class="widget-head "style="padding:10px 20px 10px;">
+					<div class="widget-title">最新动态</div>
+				</div>
+				<div >
+					<div class="ly-genx">
+						<div class="ly-gengxin"><span>检查更新</span></div>
+						<h3>当前版本{$version}</h3>
+					</div>
+				</div>
+				<div class="in-new-list">
+					
+				</div>
+			</div>
+		</div>
+    </div>
+
+</div>
+<script src="assets/user/js/echarts.min.js"></script>
+<script src="assets/user/js/echarts-walden.js"></script>
+<script type="text/javascript">
+
+    /**
+     * 近七日交易走势
+     * @type {HTMLElement}
+     */
+    var dom = document.getElementById('echarts-trade');
+    echarts.init(dom, 'walden').setOption({
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['成交量', '成交额']
+        },
+        toolbox: {
+            show: true,
+            showTitle: false,
+            feature: {
+                mark: {show: true},
+                magicType: {show: true, type: ['line', 'bar']}
+            }
+        },
+        calculable: true,
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: <?= $data['widget-echarts']['date'] ?>
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: '成交额',
+                type: 'line',
+                data: <?= $data['widget-echarts']['order_total_price'] ?>
+            },
+            {
+                name: '成交量',
+                type: 'line',
+                data: <?= $data['widget-echarts']['order_total'] ?>
+            }
+        ]
+    }, true);
+
+</script>
+ <!-- Swiper JS -->
+  <script src="assets/user/js/swiper.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+		loop : true,
+		autoplay:true,
+		pagination: {
+			el: '.swiper-pagination',
+		  },
+    });
+  </script>

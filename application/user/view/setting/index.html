@@ -1,0 +1,79 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head">
+				<div class="widget-title a m-cf">网站设置</div>
+			</div>
+			<form id="my-form" class="layui-form tpl-form-line-form" method="post" action="{:url('System/store')}">
+				<div class="widget-body">
+						<div class="widget-head layer-cf">
+							<div class="widget-title layer-fl">商城设置</div>
+						</div>
+						<div class="layer-form-group">
+							<label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require"> 网站备案号 </label>
+							<div class="layui-col-sm9 layer-u-end">
+								<input type="text" class="tpl-form-input" name="record_no"
+									   value="{$config['record_no']}" required>
+							</div>
+						</div>
+						 <div class="layer-form-group">
+							<label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require"> 网站名称： </label>
+							<div class="layui-col-sm9 layer-u-end">
+								<input type="text" class="tpl-form-input" name="store_name"
+									   value="{$config['store_name']}" required>
+							</div>
+						</div>
+						 <div class="layer-form-group">
+							<label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require"> 网站logo： </label>
+							<div class="layui-col-sm9 layer-u-end">
+								<input type="text" class="tpl-form-input" name="store_logo"
+									   value="{$config['store_logo']}" required>
+							</div>
+						</div>
+						 <div class="layer-form-group">
+							<label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require"> 网站标题： </label>
+							<div class="layui-col-sm9 layer-u-end">
+								<input type="text" class="tpl-form-input" name="store_title"
+									   value="{$config['store_title']}" required>
+							</div>
+						</div>
+						 <div class="layer-form-group">
+							<label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require"> 网站描述： </label>
+							<div class="layui-col-sm9 layer-u-end">
+								<input type="text" class="tpl-form-input" name="store_desc"
+									   value="{$config['store_desc']}" required>
+							</div>
+						</div>
+						 <div class="layer-form-group">
+							<label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require"> 联系人： </label>
+							<div class="layui-col-sm9 layer-u-end">
+								<input type="text" class="tpl-form-input" name="contact"
+									   value="{$config['contact']}" required>
+							</div>
+						</div>
+						<div class="layer-form-group">
+							<label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require"> 联系电话：</label>
+							<div class="layui-col-sm9 layer-u-end">
+								<input type="text" class="tpl-form-input" name="phone"
+									   value="{$config['phone']}" required>
+							</div>
+						</div>
+						<div class="layer-form-group">
+							<label class="layui-col-sm3 layui-col-lg2 layer-form-label form-require"> 具体地址：</label>
+							<div class="layui-col-sm9 layer-u-end">
+								<input type="text" class="tpl-form-input" name="address"
+									   value="{$config['address']}" required>
+							</div>
+						</div>
+						<div class="layer-form-group">
+							<div class="layui-col-sm9 layui-col-smpush-3 layer-margin-top-lg">
+								<input type="hidden" name="inc_type" value="{$inc_type}">
+								<button type="submit" class="j-submit layui-btn layui-btn-secondary">提交
+								</button>
+							</div>
+						</div>
+				</div>
+			</form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head">
+				<div class="widget-title">页面设计</div>
+			</div>
+			<div class="widget-body layui-col-sm12 layui-col-md12 layui-col-lg12">
+				<div class="layui-col-sm12 layui-col-md6 layui-col-lg6">
+					<div class="layui-form-item">       
+						<div class="">
+							<a class="layui-btn "
+							   href="{:url('tpl/edit')}">
+								<span class="mdi menu-icon mdi-plus"></span> 新增
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md12" >
+						<table width="100%" class="layui-table">
+							<thead>
+							<tr>
+							<th>页面ID</th>
+							<th width="25%">页面名称</th>
+							<th>页面类型</th>
+							<th>添加时间</th>
+							<th>更新时间</th>
+							<th>操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						{if !$list->isEmpty()} {foreach $list  as $item}
+							<tr>
+								<td class="layer-text-middle">{$item['page_id']}</td>
+								<td class="layer-text-middle">
+									<span>{$item['page_name']}</span>
+								</td>
+								<td class="layer-text-middle">
+									{if $item['page_type'] == 10}
+										<span class="layer-badge layer-badge-warning">商城首页</span>
+									{elseif $item['page_type'] == 20/}
+										<span class="layer-badge layer-badge-secondary">自定义页</span>
+									{/if}
+								</td>
+								<td class="layer-text-middle">{$item['create_time']}</td>
+								<td class="layer-text-middle">{$item['update_time']}</td>
+								<td class="layer-text-middle">
+									<div class="tpl-table-black-operation">
+											<a href="{:url('tpl/edit', ['page_id' => $item['page_id']])}">
+												<i class="mdi menu-icon mdi-pencil"></i> 编辑
+											</a>
+									   {if $item['page_type'] == 20}
+												<a href="javascript:;"
+												   class="item-delete tpl-table-black-operation-del"
+												   data-id="{$item['page_id']}">
+													<i class="mdi menu-icon mdi-delete-forever"></i> 删除
+												</a>
+												<a href="javascript:;"
+												   class="j-setHome tpl-table-black-operation-green"
+												   data-id="{$item['page_id']}">
+													<i class="iconfont icon-home"></i> 设为首页
+												</a>
+										{/if}
+									</div>
+								</td>
+							</tr>
+					  {/foreach}{else/}
+							<tr>
+								<td colspan="12" class="layer-text-center">暂无记录</td>
+							</tr>
+						{/if}
+						</tbody>
+					</table>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+
+        // 删除元素
+        $('.item-delete').delete('page_id', "<?= url('tpl/delete') ?>");
+
+        // 设为首页
+        $('.j-setHome').click(function () {
+            var pageId = $(this).attr('data-id');
+            layer.confirm('确定要将此页面设置为默认首页吗？', function (index) {
+                $.post("<?= url('tpl/sethome') ?>", {page_id: pageId}, function (result) {
+                    result.code === 1 ? $.show_success(result.msg, result.url)
+                        : $.show_error(result.msg);
+                });
+                layer.close(index);
+            });
+        });
+
+    });
+</script>
+

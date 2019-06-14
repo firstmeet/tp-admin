@@ -1,0 +1,172 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="renderer" content="webkit"/>
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<link rel="icon" type="image/png" href="assets/user/i/favicon.ico"/>
+<meta name="apple-mobile-web-app-title"/>
+<link rel="stylesheet" href="assets/layer/theme/default/layer.css"/>
+<link rel="stylesheet" href="assets/user/css/wy_modality.css"/>
+<script src="assets/user/js/jquery.min.js"></script>
+<link rel="stylesheet" href="/assets/user/vendors/iconfonts/mdi/css/materialdesignicons.min.css"/>
+<link rel="stylesheet" href="/assets/user/vendors/css/vendor.bundle.base.css"/>
+<script>        BASE_URL = '{$base_url}';        STORE_URL = '/index.php?s=/user';    </script>
+</head>
+<body data-type="">
+<div class="row-content layer-cf">
+	<div class="row">
+		<div class="layer-u-sm-12 layer-u-md-12 layer-u-lg-12">
+			<div class="widget layer-cf ">
+				<div class="widget-head layer-cf">
+					<div class="widget-title layer-cf">
+												出售中的商品
+					</div>
+				</div>
+				<div class="widget-body layer-fr">
+					<!-- 工具栏 -->
+					<div class="page_toolbar layer-margin-bottom-xs layer-cf">
+						<form class="toolbar-form" action="">
+							<input type="hidden" name="s" value="/{$request->pathinfo()}">
+							<div class="layer-u-sm-12 layer-u-md-9">
+								<div class="layer">
+									<div class="layer-form-group layer-fl">
+										<span style="display:none;">{$category_id = $request->get('category_id') ?: null}</span>
+										<select class="form-control" name="category_id" data-layer-selected="{searchBox: 1, btnSize: 'sm', placeholder: '商品分类', maxHeight: 400}">
+											<option value="">商品分类</option>
+											                                          {if isset($catgory)}:											{foreach $catgory as $first}
+											<option value="{$first['id']}">                                                    {$first['name']}											</option>
+											                                            {/foreach}{/if}
+										</select>
+									</div>
+									<div class="layer-form-group layer-fl">
+										<span style="display:none;"> {$status = $request->get('	status') ?: null}</span>
+										<select class="form-control" name="status" data-layer-selected="{btnSize: 'sm', placeholder: '商品状态'}">
+											<option value="">商品状态</option>
+											<option value="10" {$status == 1 ? 'selected' : ''}>上架											</option>
+											<option value="20" {$status == 0 ? 'selected' : ''}>下架											</option>
+										</select>
+									</div>
+									<div class="layer-form-group layer-fl">
+										<div class="layer-input-group layer-input-group-sm tpl-form-border-form">
+											<input type="text" class="layer-form-field" name="name" placeholder="请输入商品名称" value="{$request->get('name')}">
+											<div class="layer-input-group-btn">
+												<button class="layer-btn layer-btn-default mdi menu-icon mdi-magnify" type="submit"></button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="layer-scrollable-horizontal layer-u-sm-12">
+						<table width="100%" class="layer-table layer-table-compact layer-table-striped tpl-table-black layer-text-nowrap">
+						<thead>
+						<tr>
+							<th>
+																选择
+							</th>
+							<th>
+																商品ID
+							</th>
+							<th>
+																商品图片
+							</th>
+							<th>
+																名称
+							</th>
+							<th>
+																排序
+							</th>
+							<th>
+																状态
+							</th>
+							<th>
+																添加时间
+							</th>
+						</tr>
+						</thead>
+						<tbody id="goos_table">
+						                            {if !$list->isEmpty()}{foreach $list as $item}
+						<tr>
+							<td class="layer-text-middle">
+								<input type="radio" name="goodsid" data-id="{$item.goods_id}"  {notempty name="$list[0]['image'][0]"} data-image="{$list[0]['image'][0]['file_path']}"{/notempty}
+							data-name="{$item['goods_name']}"  onclick="changeGoods(this)" value="{$item['goods_id']}"/>
+							</td>
+							<td class="layer-text-middle">
+																{$item['goods_id']}
+							</td>
+							<td class="layer-text-middle">
+							{notempty name="$list[0]['image'][0]"}
+							<img class="images" style="width:50px;"src='{$list[0]["image"][0]["file_path"]}'	/>
+							{else/}
+							<p class="item-title">暂无</p>
+							{/notempty}
+							</td>
+							<td class="layer-text-middle">
+								<p class="item-title">
+																		{$item['goods_name']}
+								</p>
+							</td>
+							<td class="layer-text-middle">
+																{$item['sort']}
+							</td>
+							<td class="layer-text-middle">
+								<span class="j-state layer-badge x-cur-p layer-badge-{$item['is_on_sale'] == 1 ? 'success' : 'warning'}" data-id="{$item['goods_id']}" data-state="{$item['is_on_sale']}">                                               
+								{if $item['is_on_sale'] == 1}上架{else/}下架{/if}								
+								</span>
+							</td>
+							<td class="layer-text-middle">
+																{$item['create_time']}
+							</td>
+						</tr>
+														{/foreach}{else/}
+						<tr>
+							<td colspan="9" class="layer-text-center">
+																暂无记录
+							</td>
+						</tr>
+						                            {/if}
+						</tbody>
+						</table>
+					</div>
+					<div class="layer-u-lg-12 layer-cf">
+						<div class="layer-fr">
+														{$list|raw}
+						</div>
+						<div class="layer-fr pagination-total layer-margin-right">
+							<div class="layer-vertical-align-middle">
+																总记录：{$list->total()}
+							</div>
+						</div>
+					</div>
+					<div class="layer-form-group">
+						<div class="layer-u-sm-9 layer-u-sm-push-3 layer-margin-top-lg">
+							<button type="submit" onclick="select_goods();" class="j-submits layer-btn layer-btn-secondary">确定							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+<script>  
+var goods_id = 0 , goods_name = '' , store_count = '';  
+function changeGoods(obj){	 
+ goods_id = $(obj).attr('data-id');	
+ goods_name = $(obj).attr('data-name');  
+  goods_image = $(obj).attr('data-image');  
+ }  
+ function select_goods()  {	
+ if($("input[type='radio']:checked").length == 0){	
+ layer.alert('请选择商品', {icon: 2}); 	  
+ return false;	 
+ }       
+ window.parent.call_back(goods_id,goods_name,goods_image);  
+ }      </script>

@@ -1,0 +1,62 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<form id="my-form" class="layui-form " enctype="multipart/form-data" method="post">						
+				<div class="widget-head ">					
+					<div class="widget-title ">商品属性</div>			
+				</div>
+				<div class="widget-body layui-col-lg12">
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require">属性名称: </label>
+							<div class="layui-col-sm7 layer-midd-left">
+								<input type="text" class="layui-input" name="attrbute[name]"
+									   value="{$detail['name']}" required>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require">商品类型： </label>
+							<div class="layui-col-sm7 layer-midd-left">
+								<select  name="attrbute[type_id]"
+										data-am-selected="{searchBox: 1, btnSize: 'sm'}" required>
+									<option value="0">请选择所属类型:</option>
+									{if isset($type)}{foreach ($type as $first)}
+										<option {if condition="$first.id eq $detail.type_id"} selected="selected"{/if} value="{$first['id']}">{$first['name']}</option>{/foreach}{/if}
+									
+								</select>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require">排序: </label>
+							<div class="layui-col-sm7 layer-midd-left">
+								<input type="text" class="layui-input" name="attrbute[sort]"
+									   value="{$detail['sort']}" required>
+							</div>
+						</div>
+					   <div class="layui-form-item">
+							<label class="layui-form-label form-require">可选值列表： </label>
+							<div class="layui-col-sm7 layer-midd-left">
+								<textarea name='attrbute[values]' rows="10" class="layui-textarea">{$detail.values}</textarea>
+							</div>
+						</div>
+					 
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button type="submit" class="j-submit layui-btn ">提交
+								</button>
+							</div>
+						</div>
+				</div>
+			</form>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        /**
+         * 表单验证提交
+         * @type {*}
+         */
+        $('#my-form').superForm();
+
+    });
+</script>

@@ -1,0 +1,74 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md12 layui-col-xs12"> 
+			<div class="widget-head">
+				<div class="widget-title">领取列表</div>
+			</div>
+			<div class="widget-body layui-col-md12">
+				<!-- 工具栏 -->
+				<div class="page_toolbar layer-margin-bottom-xs layer-cf">
+					<form class="layui-form" method="post" action="{Url('User/index')}">
+						<input type="hidden" nlayere="s" value="/{$request->pathinfo()}">
+						<div class="layui-col-sm12 layui-col-md9 ">
+							   <div class="layui-col-md4">
+									<label class="layui-form-label">微信昵称：</label>
+									<div class="layui-input-block">
+									<input name="nickName" type="text" lay-verify="required" class="layui-input" placeholder="请输入微信昵称" value="{$request->get('nickName ')}">                                            
+									</div>
+								</div>
+								<div class="layui-col-md4 laui-col-width">
+									<button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+								</div>
+						</div>
+					</form>
+				</div>
+				<div class="layui-col-md12" >
+					<table width="100%" class="layui-table">
+						<thead>
+						<tr>
+							<th>用户ID</th>
+							<th>昵称</th>
+							<th>卡号</th>
+							<th>添加时间</th>
+						 
+						</tr>
+						</thead>
+						<tbody>
+						{if (!$list->isEmpty())}{foreach ($list as $item)}
+							<tr>
+								<td>{$item['user_id']}</td>
+								<td>
+									{$item['nickName']}
+								</td>
+								<td>{$item['card']}</td>
+								<td>{$item['create_time']|date='Y-m-d'}</td>
+							 
+						  
+							</tr>
+						{/foreach}{else/}
+							<tr>
+								<td colspan="10" class="layer-text-center">暂无记录</td>
+							</tr>
+						{/if}
+						</tbody>
+					</table>
+				</div>
+				<div class="layui-col-lg12">
+					<div class="">{$page|raw} </div>
+					<div class="">
+						<div class="">总记录：{$list->total()}</div>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        // 删除元素
+        var url = "index.php?s=/user/user/delete";
+        $('.item-delete').delete('user_id', url, '确定要冻结此用户吗？');
+
+    });
+</script>
+

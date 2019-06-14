@@ -1,0 +1,416 @@
+<div class="layui-container">
+	<div class="layui-row">
+		<div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head">
+				<div class="widget-title a m-cf">分销设置</div>
+			</div>
+			<form id="my-form" class="layui-form" method="post">
+				<div class="widget-body layui-col-sm12 layui-col-md12 layui-col-lg12">
+					<div class="layui-tab layui-tab-brief" lay-filter="test">
+						<ul class="layui-tab-title">
+							<li class="layui-this">基础设置</li>
+							<li>佣金设置</li>
+							<li>结算</li>
+							<li>自定义文字</li>
+							<li>页面背景图</li>
+							<li>模板消息</li>
+						</ul>
+						<div class="layui-tab-content">
+							<div class="layui-tab-item layui-show">
+								<div class="layui-col-sm12 layui-col-md12">
+									<label class="layui-form-label"> 是否开启分销功能 </label>
+									<div class="layui-input-block">
+										<label class="layui-inline ">
+											<input type="radio" name="setting[basic][is_open]"  value="1" {notempty name="$data['basic']['values']['is_open']"}{$data['basic']['values']['is_open'] === '1' ? 'checked' : ''}{/notempty}>  开启
+										</label>
+										<label class="layui-inline ">
+											<input type="radio" name="setting[basic][is_open]" value="2" {notempty name="$data['basic']['values']['is_open']"}{$data['basic']['values']['is_open'] === '2' ? 'checked': ''}{/notempty} > 关闭
+										</label>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label"> 分销层级 </label>
+									<div class="layui-input-block ">
+										<label class="layui-inline ">
+											<input type="radio" name="setting[basic][level]" value="1" {notempty name="$data['basic']['values']['level']"}{$data['basic']['values']['level'] === '1' ? 'checked' : ''}{/notempty}>
+											一级分销
+										</label>
+										<label class="layui-inline ">
+											<input type="radio" name="setting[basic][level]"  value="2" {notempty name="$data['basic']['values']['level']"}{$data['basic']['values']['level'] === '2' ? 'checked' : ''}{/notempty}>
+											二级分销
+										</label>
+										<label class="layui-inline ">
+											<input type="radio" name="setting[basic][level]" value="3" {notempty name="$data['basic']['values']['level']"}{$data['basic']['values']['level'] === '3' ? 'checked' : ''}{/notempty}>
+											三级分销
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="layui-tab-item">
+								<div class="layui-form-item">
+									<label class="layui-form-label">一级佣金比例</label>
+									<div class="layui-input-block">
+										<input type="number" min="0" max="100" class="layui-input" name="setting[commission][first_money]" value="{$data['commission']['values']['first_money'] ?? ''}"  >
+										<small>佣金比例范围 0% - 100%</small>
+									</div>
+
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label"> 二级佣金比例</label>
+									<div class="layui-input-block">
+										<input type="number" min="0" max="100" class="layui-input" name="setting[commission][second_money] "  value="{$data['commission']['values']['second_money'] ?? '' }">
+										<small>佣金比例范围 0% - 100%</small>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">三级佣金比例</label>
+									<div class="layui-input-block ">
+										<input type="number" min="0" max="100" class="layui-input" name="setting[commission][third_money]" value="{$data['commission']['values']['third_money']?? '' }"  >
+
+										<small>佣金比例范围 0% - 100%</small>
+									</div>
+								</div>
+
+							</div>
+							<div class="layui-tab-item">
+								<div class="layui-form-item">
+									<label class="layui-form-label">结算方式</label>
+									<div class="layui-input-block">
+										<label class="layui-inline "><input type="radio" name="setting[settlement][pay_type][enumer_ation]" value="20" {notempty name="$data['settlement']['values']['pay_type']['enumer_ation']"}{$data['settlement']['values']['pay_type']['enumer_ation'] === '20' ? 'checked' : ''}{/notempty} title="支付宝"></label>
+										<label class="layui-inline "><input type="radio" name="setting[settlement][pay_type][enumer_ation]" class="layui-inline" value="30" {notempty name="$data['settlement']['values']['pay_type']['enumer_ation']"}{$data['settlement']['values']['pay_type']['enumer_ation'] === '30' ? 'checked' : ''}{/notempty} title="银行卡"></label>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">最低提现额度</label>
+									<div class="layui-input-block">
+										<input type="number" min="0" class="layui-input" name="setting[settlement][min_money]" value="{$data['settlement']['values']['min_money'] ?? ''}"  >
+									</div>
+								</div>
+							</div>
+							<div class="layui-tab-item">
+								<div class="widget-head ">
+									<div class="widget-title layer-fl">分销订单页面</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">页面标题</label>
+									<div class="layui-input-block ">
+										<input type="text" class="layui-input" name="setting[words][order][title][value]"  value="{notempty name="data['words']"}{$data['words']['values']['order']['title']['value'] ?? ''}{/notempty}">
+										<small> 默认：{notempty name="data['words']"}{$data['words']['values']['order']['title']['value'] ?? ' '}{/notempty}</small>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">全部</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" name="setting[words][order][words][all][value]" value="{$data['words']['values']['order']['words']['all']['value'] ?? ''}" >
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">未结算</label>
+									<div class="layui-input-block ">
+										<input type="text" class="layui-input" name="setting[words][order][words][unsettled][value]" value="{$data['words']['values']['order']['words']['unsettled']['value']?? ''}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">已结算</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" name="setting[words][order][words][settled][value]" value="{$data['words']['values']['order']['words']['settled']['value'] ?? ''}">
+									</div>
+								</div>
+
+								<div class="widget-head ">
+									<div class="widget-title layer-fl">我的团队页面</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">
+										页面标题
+									</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" name="setting[words][team][title][value]" value="{notempty name="data['words']"}{$data['words']['values']['team']['title']['value'] ?? ' '}{/notempty}">
+										<small> 默认：{notempty name='data'}{$data['words']['values']['team']['title']['value']  ?? ' '}</small>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">团队总人数</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" name="setting[words][team][words][total_team][value]" value="{$data['words']['values']['team']['words']['total_team']['value']  ?? ' '}"  >
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">一级团队</label>
+									<div class="layui-input-block ">
+										<input type="text" class="layui-input"  name="setting[words][team][words][first][value]" value="{$data['words']['values']['team']['words']['first']['value']  ?? ' '}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">二级团队</label>
+									<div class="layui-input-block ">
+										<input type="text" class="layui-input" name="setting[words][team][words][second][value]" value="{$data['words']['values']['team']['words']['second']['value'] ?? ' '}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">三级团队</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" name="setting[words][team][words][third][value]" value="{$data['words']['values']['team']['words']['third']['value']  ?? ' '}">
+									</div>
+								</div>
+								<div class="widget-head ">
+									<div class="widget-title layer-fl">提现明细页面</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">页面标题</label>
+									<div class="layui-input-block ">
+										<input type="text" class="layui-input" name="setting[words][withdraw_list][title][value]" value="{notempty name="data['words']"}{$data['words']['values']['withdraw_list']['title']['value']  ?? ' '}{/notempty}" >
+										<small>默认：{notempty name='data'}{$data['words']['values']['withdraw_list']['title']['value']  ?? ' '}</small>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">全部</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" name="setting[words][withdraw_list][words][all][value]" value="{$data['words']['values']['withdraw_list']['words']['all']['value']  ?? ' '}" >
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">审核中</label>
+									<div class="layui-input-block ">
+										<input type="text" class="layui-input" name="setting[words][withdraw_list][words][apply_10][value]" value="{$data['words']['values']['withdraw_list']['words']['apply_10']['value']  ?? ' '}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">审核通过</label>
+									<div class="layui-input-block ">
+										<input type="text" class="layui-input" name="setting[words][withdraw_list][words][apply_20][value]" value="{$data['words']['values']['withdraw_list']['words']['apply_20']['value']  ?? ' '}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">已打款</label>
+									<div class="layui-input-block ">
+										<input type="text" class="layui-input" name="setting[words][withdraw_list][words][apply_40][value]" value="{$data['words']['values']['withdraw_list']['words']['apply_40']['value']  ?? ' '}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">驳回</label>
+									<div class="layui-input-block ">
+										<input type="text" class="layui-input" name="setting[words][withdraw_list][words][apply_30][value]" value="{$data['words']['values']['withdraw_list']['words']['apply_30']['value']  ?? ' '}" >
+									</div>
+								</div>
+
+								<div class="widget-head ">
+									<div class="widget-title layer-fl">申请提现页面</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">页面标题</label>
+									<div class="layui-input-block ">
+										<input type="text" class="layui-input" name="setting[words][withdraw_apply][title][value]" value="{notempty name="data['words']"}{$data['words']['values']['withdraw_apply']['title']['value']} {/notempty}">
+										<small>默认：{notempty name='data'}{$data['words']['values']['withdraw_apply']['title']['value']  ?? ' '}</small>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">可提现佣金</label>
+									<div class="layui-input-block ">
+										<input type="text" class="layui-input" name="setting[words][withdraw_apply][words][capital][value]" value="{$data['words']['values']['withdraw_apply']['words']['capital']['value']  ?? ' '}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">提现金额</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" name="setting[words][withdraw_apply][words][money][value]" value="{$data['words']['values']['withdraw_apply']['words']['money']['value']  ?? ' '}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">请输入要提取的金额</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" name="setting[words][withdraw_apply][words][money_placeholder][value]" value="{$data['words']['values']['withdraw_apply']['words']['money_placeholder']['value']  ?? ' '}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">最低提现佣金</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" name="setting[words][withdraw_apply][words][min_money][value]" value="{$data['words']['values']['withdraw_apply']['words']['min_money']['value']  ?? ' '}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">提交申请</label>
+									<div class="layui-input-block ">
+										<input type="text" class="layui-input" name="setting[words][withdraw_apply][words][submit][value]" value="{$data['words']['values']['withdraw_apply']['words']['submit']['value'] ?? ' '}">
+									</div>
+								</div>
+
+								<div class="widget-head ">
+									<div class="widget-title layer-fl">推广二维码</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">页面标题
+									</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" name="setting[words][qrcode][title][value]" value="{notempty name="data['words']"}{$data['words']['values']['qrcode']['title']['value']  ?? ' '}{/notempty}">
+										<small>默认：{notempty name='data'}{$data['words']['values']['qrcode']['title']['value']  ?? ' '}</small>
+									</div>
+								</div>
+							</div>
+							<div class="layui-tab-item">
+								<div class="layui-form-item">
+									<label class="layui-form-label">分销中心首页 </label>
+									<div class="layui-input-block">
+										<div class="layui-col-sm12">
+											<div class="layui-input-block ">
+												<button type="button" class="j-index upload-file layui-btn layui-btn-secondary layer-radius">
+													<i class="mdi menu-icon mdi-plus"></i> 选择图片
+												</button>
+												<div class="uploader-list ">
+													{if (!empty($data['background']['values']['index']))}
+													<div class="file-item">
+														<a href="{$data['background']['values']['index'] }"
+														   title="点击查看大图"
+														   target="_blank">
+															<img src="{$data['background']['values']['index'] }">
+														</a>
+														<input type="hidden" name="setting[background][index]"
+															   value="{$data['background']['values']['index']  ?? ' '}">
+														<i class="mdi menu-icon mdi-window-close file-item-delete"></i>
+													</div>
+													{/if}
+												</div>
+											</div>
+											<div class="help-block">
+												<small>尺寸：宽750像素 高度不限</small>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">申请成为分销商页 </label>
+									<div class="layui-col-sm9 ">
+										<div class="layui-input-block ">
+											<button type="button"
+													class="j-apply upload-file layui-btn layui-btn-secondary layer-radius">
+												<i class="mdi menu-icon mdi-plus"></i> 选择图片
+											</button>
+											<div class="uploader-list ">
+												{if (!empty($data['background']['values']['apply']))}
+												<div class="file-item">
+													<a href="{$data['background']['values']['apply'] }"
+													   title="点击查看大图"
+													   target="_blank">
+														<img src="{$data['background']['values']['apply'] }">
+													</a>
+													<input type="hidden" name="setting[background][apply]"
+														   value="{$data['background']['values']['apply']  ?? ' '}">
+													<i class="mdi menu-icon mdi-window-close file-item-delete"></i>
+												</div>
+												{/if}
+											</div>
+										</div>
+										<div class="help-block">
+											<small>尺寸：宽750像素 高度不限</small>
+										</div>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">申请提现页 </label>
+									<div class="layui-col-sm9 ">
+										<div class="layui-input-block ">
+											<button type="button"
+													class="j-withdraw_apply upload-file layui-btn layui-btn-secondary layer-radius">
+												<i class="mdi menu-icon mdi-plus"></i> 选择图片
+											</button>
+											<div class="uploader-list ">
+												{if (!empty($data['background']['values']['withdraw_apply']))}
+												<div class="file-item">
+													<a href="{$data['background']['values']['withdraw_apply'] }"
+													   title="点击查看大图"
+													   target="_blank">
+														<img src="{$data['background']['values']['withdraw_apply'] }">
+													</a>
+													<input type="hidden"
+														   name="setting[background][withdraw_apply]"
+														   value="{$data['background']['values']['withdraw_apply']  ?? ' '}">
+													<i class="mdi menu-icon mdi-window-close file-item-delete"></i>
+												</div>
+												{/if}
+											</div>
+										</div>
+										<div class="help-block">
+											<small>尺寸：宽750像素 高度不限</small>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="layui-tab-item">
+								<div class="layui-form-item">
+									<label class="layui-form-label">分销商入驻审核通知</label>
+									<div class="layui-input-block ">
+										<input type="text" class="layui-input" name="setting[template_msg][apply_tpl]" placeholder="请填写模板消息ID" value="{$data['template_msg']['values']['apply_tpl']  ?? ' '}">
+										<small>模板编号AT0674，关键词 (申请时间、审核状态、审核时间、备注信息)</small>
+										<small class="layer-margin-left-xs">
+											<a href="index.php?s=/user/setting/tplmsg/get" target="_blank">如何获取模板消息ID？</a>
+										</small>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label"> 提现状态通知 </label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" name="setting[template_msg][withdraw_tpl]" placeholder="请填写模板消息ID" value="{$data['template_msg']['values']['withdraw_tpl']  ?? ' '}">
+										<small>模板编号AT0324，关键词 (提现时间、提现方式、提现金额、提现状态、备注)</small>
+										<small class="layer-margin-left-xs">
+											<a href="index.php?s=/user/setting/tplmsg/tplmsg" target="_blank">如何获取模板消息ID？</a>
+										</small>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<button type="submit" class="j-submit layui-btn layui-btn-secondary">提交
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- 图片文件列表模板 -->
+<script id="tpl-file-item" type="text/template">
+	{{ each list }}
+	<div class="file-item">
+		<a href="{{ $value.file_path }}" title="点击查看大图" target="_blank">
+			<img src="{{ $value.file_path }}">
+		</a>
+		<input type="hidden" name="{{ name }}" value="{{ $value.file_path }}">
+		<i class="mdi menu-icon mdi-window-close file-item-delete"></i>
+	</div>
+	{{ /each }}
+</script>
+
+<!-- 文件库弹窗 -->
+{include file="layouts/_template/file_library" /}
+
+<script>
+    $(function () {
+
+        // 选择图片：分销中心首页
+        $('.j-index').selectImages({
+            name: 'setting[background][index]'
+            , multiple: false
+        });
+
+        // 选择图片：申请成为分销商页
+        $('.j-apply').selectImages({
+            name: 'setting[background][apply]'
+            , multiple: false
+        });
+
+        // 选择图片：申请提现页
+        $('.j-withdraw_apply').selectImages({
+            name: 'setting[background][withdraw_apply]'
+            , multiple: false
+        });
+        /**
+         * 表单验证提交
+         * @type {*}
+         */
+        $('#my-form').superForm();
+
+    });
+</script>

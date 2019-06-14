@@ -1,0 +1,79 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="widget">
+                <div class="widget-body layui-col-sm12 layui-col-md12 layui-col-lg12">
+                   
+                        <div class="layui-form-item">
+                            <div class="layer-btn-toolbar">
+                             
+                                    <a class="layui-btn "
+                                       href="{:url('app/edit')}">
+                                        <span class=""></span> 新增小程序
+                                    </a>
+                             
+                            </div>
+                        </div>
+                    
+                       <div class="layui-col-md12" >
+                        <table width="100%" class="layui-table">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>名称</th>
+                                <th>头像</th>
+                                <th>区域</th>
+                                <th>类型</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody class="list">
+							{if isset($list)}
+							{volist name="list" id="list"}
+							   <tr>
+                                    <td >{$list['app_id']??''}</td>
+                                    <td >{$list['app_name']??''}</td>
+                                    <td ><img class="lay-sef" src="{$list['file_path']??''}"/></td>
+                                    <td >北京</td>
+                                    <td >微信小程序</td>
+                                    <td >
+                                        <div class="tpl-table-black-operation ">
+                                            <a href="javascript:;" class="add_on" data-id="{$list['app_id']}">
+                                                <i class="layer-icon-pencil"></i> {if $Think.session.app_id eq $list.app_id}当前选中 {else/}进入管理{/if}
+                                            </a>
+                                            <a href="{:url('app/edit',
+                                                ['app_id' => $list['app_id']])}">
+                                                <i class="layer-icon-pencil"></i> 编辑
+                                            </a>
+                                            <a href="javascript:;" class="item-delete tpl-table-black-operation-del"
+                                               data-id="{$list.app_id}">
+                                                <i class="layer-icon-trash"></i> 删除
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {/volist}
+							{else/}
+                                <tr>
+                                    <td colspan="6" class="layer-text-center">暂无记录</td>
+                                </tr>
+								{/if}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        // 删除元素
+        var url = "{:url('app/delete')}";
+        $('.item-delete').delete('app_id', url);
+
+
+
+		$('.add_on')._get('app[app_id]', "{:url('app/addOn')}",'确定要设为当前小程序吗?');
+	 });
+</script>

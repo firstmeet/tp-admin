@@ -1,0 +1,109 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<form id="my-form" class="layui-form " enctype="multipart/form-data" method="post">						
+				<div class="widget-head">							
+					<div class="widget-title">品牌详情</div>		
+				</div>
+				<div class="widget-body layui-col-sm12 layui-col-md12 layui-col-lg12">
+				   
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require">品牌名称:</label>
+							<div class="layui-col-sm7 layer-midd-left">
+								<input type="text" class="layui-input" name="brand[name]"
+									   value="{$list['name']??''}" required>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require">品牌网址:</label>
+							<div class="layui-col-sm7 layer-midd-left">
+								<input type="text" class="layui-input" name="brand[url]"
+									   value="{$list['url']??''}" required>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">品牌logo </label>
+							<div class="layui-col-sm7 layer-midd-left">
+								<div class="layer-form-file">
+									<button type="button"
+											class="upload-file layer-btn-secondary layer-radius layui-btn">
+										<i class="layer-icon-cloud-upload "></i> 选择图片
+									</button>
+									<div class="uploader-list layer-cf">
+										  <div class="file-item">
+												<a href="{$list['file_path']}" title="点击查看大图" target="_blank">
+													<img src="{$list['file_path']}">
+												</a>
+												<input type="hidden" name="brand[logo]"
+													   value="{$list['logo']??''}">
+												<i class="mdi menu-icon mdi-window-close file-item-delete"></i>
+											</div>
+									</div>
+								</div>
+								<div class="help-block layer-margin-top-sm">
+									<small>尺寸150x150像素以上，大小2M以下</small>
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require">品牌排序 </label>
+							<div class="layui-col-sm7 layer-midd-left">
+								<input type="number" class="layui-input" name="brand[sort]"
+									   value="{$list['sort']??''}" required>
+								<small>数字越小越靠前</small>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label form-require">品牌描述:</label>
+							<div class="layui-col-sm7 layer-midd-left">
+							  <textarea rows="4" cols="60" class="layui-textarea" name="brand[desc]">
+							  {$list['desc']}
+							  </textarea>
+							</div>
+						</div>
+						<div>
+							<input type="hidden" name="brand[id]" value="{$list['id']??''}">
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button type="submit" class="j-submit layui-btn layui-btn-secondary">提交
+								</button>
+							</div>
+						</div>
+					
+				</div>
+			</form>
+        </div>
+    </div>
+</div>
+
+<!-- 图片文件列表模板 -->
+{include file="layouts/_template/tpl_file_item" /}
+
+<!-- 文件库弹窗 -->
+{include file="layouts/_template/file_library" /}
+
+<script>
+    $(function () {
+
+        // 选择图片
+        $('.upload-file').selectImages({
+            name: 'brand[logo]'
+        });
+
+        /**
+         * 表单验证提交
+         * @type {*}
+         */
+		 var parent_id=$("#parent_id_1").val();
+	
+		 if(parent_id > 0 ){
+			get_category($("#parent_id_1").val(),'parent_id_2',0);	 
+		}	
+        $('#my-form').superForm();
+
+    });
+
+		
+
+</script>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>{$setting['store']['values']['name']}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="/assets/user/i/favicon2.ico"/>
+    <meta name="apple-mobile-web-app-title" content="{$setting['store']['values']['name']}"/>
+
+
+</head>
+
+<body data-type="">
+<div class="row-content layer-cf">
+    <div class="row">
+        <div class="layer-u-sm-12 layer-u-md-12 layer-u-lg-12">
+            <div class="widget layer-cf">
+                <!-- <div class="widget-head layer-cf">
+                    <div class="widget-title layer-cf">小程序管理系统</div>
+                </div> -->
+                <div class="widget-body layer-fr">
+                    <div class="layer-u-sm-12 layer-u-md-6 layer-u-lg-6">
+                        <div class="layer-form-group">
+                            <div class="layer-btn-toolbar">
+                                <div class="layer-btn-group layer-btn-group-xs">
+                                    <a class="layer-btn layer-btn-default layer-btn-success layer-radius"
+                                       href="{:url('app/edit')}">
+                                        <span class="layer-icon-plus"></span> 新增小程序
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layer-u-sm-12">
+                        <table width="100%" class="layer-table layer-table-compact layer-table-striped tpl-table-black ">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>名称</th>
+                                <th>头像</th>
+                                <th>区域</th>
+                                <th>类型</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody class="list">
+							{if isset($list)}
+							{volist name="list" id="list"}
+							   <tr>
+                                    <td >{$list['app_id']??''}</td>
+                                    <td >{$list['app_name']??''}</td>
+                                    <td ><img class="lay-sef" src="{$list['file_path']??''}"/></td>
+                                    <td >北京</td>
+                                    <td >微信小程序</td>
+                                    <td >
+                                        <div class="tpl-table-black-operation add_on "  data-id="{$list['app_id']}">
+                                            <a href="javascript:;">
+                                                <i class="layer-icon-pencil"></i> {if $Think.session.wymall_store.app.app_id eq $list.app_id}当前选中 {else/}进入管理{/if}
+                                            </a>
+
+                                            <a href="{:url('app/edit',
+                                                ['app_id' => $list['app_id']])}">
+                                                <i class="layer-icon-pencil"></i> 编辑
+                                            </a>
+                                            <a href="javascript:;" class="item-delete tpl-table-black-operation-del"
+                                               data-id="{$list.app_id}">
+                                                <i class="layer-icon-trash"></i> 删除
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {/volist}
+							{else/}
+                                <tr>
+                                    <td colspan="6" class="layer-text-center">暂无记录</td>
+                                </tr>
+								{/if}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<style>
+.list tr td{
+	text-align:center;
+	vertical-align:middle !important;
+}
+</style>
+<script>
+    $(function () {
+        // 删除元素
+        var url = "{:url('app/delete')}";
+        $('.item-delete').delete('app_id', url);
+
+
+
+		$('.add_on').on('click', function(){
+			$('.add_on')._get('app[app_id]', "{:url('app/add_on')}",'确定要设为当前小程序吗?');
+		});
+	 });
+</script>
+</html>

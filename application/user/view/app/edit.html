@@ -1,0 +1,87 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="widget">
+                <form id="my-form" class="layui-form" enctype="multipart/form-data" method="post">
+                    <div class="widget-body layui-col-sm12 layui-col-md12 layui-col-lg12">
+                            <div class="widget-head">
+                                <div class="widget-title">{if isset($model['app_id'])}编辑 {else/}新增{/if}小程序</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label form-require">小程序名称 </label>
+                                <div class="layui-col-sm9 layer-u-end">
+                                    <input type="text" class="layui-input" name="edit[app_name]"
+                                           value="{$model['app_name']??''}" required>
+                                </div>
+                            </div>
+                           
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">小程序logo</label>
+                                <div class="layui-col-sm9 layer-u-end">
+                                    <div class="layer-form-file">
+                                        <button type="button"
+                                                class="upload-file layui-btn layer-btn-secondary layer-radius">
+                                            <i class="layer-icon-cloud-upload"></i> 选择图片
+                                        </button>
+                                        <div class="uploader-list ">
+                                            {if $model['image']}
+                                                <div class="file-item layer-cf">
+                                                    <img src="{$model['file_path']??''}">
+                                                    <input type="hidden" name="edit[image_id]"
+                                                           value="{$model['image_id']??''}">
+                                                    <i class="iconfont icon-shanchu file-item-delete"></i>
+                                                </div>
+                                           {/if}
+                                        </div>
+                                    </div>
+                                    <div class="help-block layer-margin-top-sm">
+                                        <small>尺寸150x150像素以上，大小2M以下</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label form-require">排序 </label>
+                                <div class="layui-col-sm9 layer-u-end">
+                                    <input type="number" class="layui-input" name="edit[is_delete]"
+                                           value="{$model['is_delete']??''}" required>
+                                    <small>数字越小越靠前</small>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="hidden" name="edit[app_id]" value="{$model['app_id']??''}">
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-col-sm9 layui-col-smpush-3 layer-margin-top-lg">
+                                    <button type="submit" class="j-submit layui-btn ">提交
+                                    </button>
+                                </div>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 图片文件列表模板 -->
+{include file="layouts/_template/tpl_file_item" /}
+
+<!-- 文件库弹窗 -->
+{include file="layouts/_template/file_library" /}
+
+<script>
+    $(function () {
+
+        // 选择图片
+        $('.upload-file').selectImages({
+            name: 'edit[image_id]'
+        });
+
+        /**
+         * 表单验证提交
+         * @type {*}
+         */
+        $('#my-form').superForm();
+
+    });
+</script>

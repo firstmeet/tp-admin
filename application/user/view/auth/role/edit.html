@@ -1,0 +1,133 @@
+<link rel="stylesheet" href="/assets/extends/formSelects-v4.css"/>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<div class="widget-head">							
+				<div class="widget-title">{if isset($model['role_id'])}编辑 {else/}新增{/if}角色</div>		
+			</div>
+			<form id="my-form" class="layui-form" method="post">
+				<div class="widget-body layui-col-lg12"> 
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">角色名称</label>
+						<div class="layui-col-sm7 layer-midd-left">
+							<input type="text" class="layui-input" name="role[role_name]" value="{$model['role_name']??'' }" placeholder="请输入角色名称" required>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">排序</label>
+						<div class="layui-col-sm7 layer-midd-left">
+							<input type="number" min="0" class="layui-input" name="role[sort]" value="{$model['sort']??'' }">
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-form-item">
+							<div class="layui-form-label">普通操作</div>
+							<div class="layui-col-sm7 layer-midd-left">
+								<button type="button" class="layui-btn layui-btn-primary" onclick="checkAll('#LAY-auth-tree-index')">全选</button>
+								<button type="button" class="layui-btn layui-btn-primary" onclick="uncheckAll('#LAY-auth-tree-index')">全不选</button>
+								<button type="button" class="layui-btn layui-btn-primary" onclick="showAll('#LAY-auth-tree-index')">全部展开</button>
+								<button type="button" class="layui-btn layui-btn-primary" onclick="closeAll('#LAY-auth-tree-index')">全部隐藏</button>
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label form-require">选择权限</label>
+						<div class="layui-col-sm7 layer-midd-left">
+							<div id="LAY-auth-tree-index"></div>
+						</div>
+					</div>
+					<div>
+						<input type="hidden" name="role[role_id]" class="layui-input" value="{$model['role_id']??''}">
+					</div>
+					<div class="layui-input-block">
+						<button type="submit" class="j-submit layui-btn layui-btn-secondary">提交
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+ $(function () {
+
+	/**
+	 * 表单验证提交
+	 * @type {*}
+	 */
+	$('#my-form').superForm();
+     layui.config({
+         base: 'assets/extends/',
+     }).extend({
+         authtree: 'authtree',
+     });
+     layui.use(['jquery', 'authtree', 'form', 'layer'], function(){
+         var $ = layui.jquery;
+         var authtree = layui.authtree;
+         var form = layui.form;
+         var layer = layui.layer;
+         var role_id = "{$model.role_id}";
+
+		// 初始化
+		$.ajax({
+			url: '{:url("store/menu")}',
+			type: 'POST',
+			dataType: 'json',
+			data:{'role_id':role_id},
+			success: function(data){
+				// 渲染时传入渲染目标ID，树形结构数据（具体结构看样例，checked表示默认选中），以及input表单的名字
+				authtree.render('#LAY-auth-tree-index', data.data.accessList, {
+					inputname: 'role[access][]'
+					,layfilter: 'lay-check-auth'
+					,autowidth: true
+				});
+			},
+			error: function(xml, errstr, err) {
+				layer.alert(errstr+'，获取数据失败！');
+			}
+		});
+
+	});
+	});
+	
+	// 全选
+	function checkAll(dst){
+		layui.use(['jquery', 'layer', 'authtree'], function(){
+			var layer = layui.layer;
+			var authtree = layui.authtree;
+			authtree.checkAll(dst);
+		});
+	}
+	// 全不选
+	function uncheckAll(dst){
+		layui.use(['jquery', 'layer', 'authtree'], function(){
+			var layer = layui.layer;
+			var authtree = layui.authtree;
+
+			authtree.uncheckAll(dst);
+		});
+	}
+	// 显示全部
+	function showAll(dst){
+		layui.use(['jquery', 'layer', 'authtree'], function(){
+			var layer = layui.layer;
+			var authtree = layui.authtree;
+
+			authtree.showAll(dst);
+		});
+	}
+	// 隐藏全部
+	function closeAll(dst){
+		layui.use(['jquery', 'layer', 'authtree'], function(){
+			var layer = layui.layer;
+			var authtree = layui.authtree;
+
+			authtree.closeAll(dst);
+		});
+	}
+
+</script>
+
+</html>

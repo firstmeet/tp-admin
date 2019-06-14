@@ -1,0 +1,77 @@
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md12 layui-col-xs12"> 
+			<div class="widget-head">
+				<div class="widget-title layer-cf">商品分类</div>
+			</div>
+			<div class="layui-col-md12 layui-col-xs12 widget-body ">  
+					<div class="layer-form-group">
+							<div class="layer-btn-group layer-btn-group-xs">
+								<a class="layui-btn layer-btn-default layer-btn-success layer-radius"
+								   href="{:url('item/editCategory')}">
+									<span class="mdi menu-icon mdi-plus"></span> 新增
+								</a>
+							</div>
+					</div>
+				<div class="layui-col-sm12 ceshi">
+					<!-- <table id="table1" width="100%" lay-filter="table1" class="layer-table layer-table-compact layer-table-striped tpl-table-black ">
+					</table> -->
+					<table class="layui-table layui-form" id="tree-table" lay-size="sm"></table>
+					<input type="hidden" data-id="" class="del_id">
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	$(function () {
+		layui.config({
+			 base: 'assets/extends/'
+		})
+		layui.use(['treeTable','layer','code','form'],function(){
+			var o = layui.$,
+				form = layui.form,
+				layer = layui.layer,
+				treeTable = layui.treeTable;
+			var	re = treeTable.render({
+				elem: '#tree-table',
+				url:"{:url('item/categoryAjax')}",
+				icon_key: 'title',
+				is_checkbox: false,
+				cols: [
+					{
+						key: 'id',
+						title: 'ID',
+						width: '5%',
+						align: 'center',
+					},
+					{
+						key: 'title',
+						title: '名称',
+						width: '35%',
+						 template: function(item){
+							return ''+item.name+'';
+						} 
+					},
+					{
+						key: 'pid',
+						title: '父ID',
+						width: '10%',
+						align: 'center',
+					},
+					{
+						title: '操作',
+						align: 'center',
+						template: function(item){
+							return '<a href="/index.php?s=/user/item/editcategory/id/'+item['id']+'" class="layui-btn layui-btn-primary layui-btn-xs "  lay-event="edit"> <i class="mdi menu-icon mdi-pencil"></i>修改</a><a class="layui-btn layui-btn-danger layui-btn-xs item-delete" lay-event="del" onclick="del('+item.id+')"  data_id="'+item.id+'"><i class="mdi menu-icon mdi-delete-forever"></i>删除</a>';
+						}
+					}
+				]
+			});
+		})
+		})
+		function del(id){
+			var url = "{:url('item/delete')}";
+			$('.item-delete').delete('id', url,'','Category',id);
+		}
+</script>
